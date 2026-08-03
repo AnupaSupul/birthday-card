@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "url": "/photos/photo1.jpg",
+    "caption": "One of my favorite memories 😂"
+  },
+  {
+    "id": 2,
+    "url": "/photos/photo2.jpg",
+    "caption": "Still don't know what we were doing here."
+  },
+  {
+    "id": 3,
+    "url": "/photos/photo3.jpg",
+    "caption": "This picture deserved to be framed."
+  },
+  {
+    "id": 4,
+    "url": "/photos/photo4.jpg",
+    "caption": "You somehow look good in every photo."
+  },
+  {
+    "id": 5,
+    "url": "/photos/photo5.jpg",
+    "caption": "We need to go back here! ✨"
+  },
+  {
+    "id": 6,
+    "url": "/photos/photo6.jpg",
+    "caption": "Best trip ever ✈️"
+  },
+  {
+    "id": 7,
+    "url": "/photos/photo7.jpg",
+    "caption": "Food stealers caught on camera 🍕"
+  },
+  {
+    "id": 8,
+    "url": "/photos/photo8.jpg",
+    "caption": "Unforgettable night 🌌"
+  },
+  {
+    "id": 9,
+    "url": "/photos/photo9.jpg",
+    "caption": "Can we talk about those outfits? 😂"
+  },
+  {
+    "id": 10,
+    "url": "/photos/photo10.jpg",
+    "caption": "Always laughing at nothing."
+  }
+]
