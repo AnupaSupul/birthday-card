@@ -24,19 +24,27 @@ function MusicPlayer({ audioRef, isPlaying, setIsPlaying }) {
   const [isMuted, setIsMuted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const togglePlay = useCallback(() => {
+  const togglePlay = useCallback(async (e) => {
+    // Stop propagation so the root onClick handler doesn't also try to play
+    e.stopPropagation();
     if (!audioRef.current) return;
+
     if (isPlaying) {
       audioRef.current.pause();
       setIsPlaying(false);
     } else {
       audioRef.current.volume = isMuted ? 0 : volume;
-      audioRef.current.play().catch(e => console.log("Audio play failed:", e));
-      setIsPlaying(true);
+      try {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      } catch (err) {
+        console.log("Audio play failed:", err);
+      }
     }
   }, [isPlaying, isMuted, volume, audioRef, setIsPlaying]);
 
   const handleVolumeChange = useCallback((e) => {
+    e.stopPropagation();
     const newVol = parseFloat(e.target.value);
     setVolume(newVol);
     if (audioRef.current) {
@@ -44,7 +52,8 @@ function MusicPlayer({ audioRef, isPlaying, setIsPlaying }) {
     }
   }, [isMuted, audioRef]);
 
-  const toggleMute = useCallback(() => {
+  const toggleMute = useCallback((e) => {
+    e.stopPropagation();
     setIsMuted(prev => {
       const nextMuted = !prev;
       if (audioRef.current) {
@@ -55,7 +64,7 @@ function MusicPlayer({ audioRef, isPlaying, setIsPlaying }) {
   }, [volume, audioRef]);
 
   return (
-    <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-2">
+    <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-2" onClick={(e) => e.stopPropagation()}>
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -94,7 +103,7 @@ function MusicPlayer({ audioRef, isPlaying, setIsPlaying }) {
       </AnimatePresence>
 
       <motion.button
-        onClick={() => setIsOpen(prev => !prev)}
+        onClick={(e) => { e.stopPropagation(); setIsOpen(prev => !prev); }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         className={`w-14 h-14 rounded-full shadow-lg flex items-center justify-center text-2xl border-2 transition-all ${
@@ -111,9 +120,25 @@ function MusicPlayer({ audioRef, isPlaying, setIsPlaying }) {
 
 function App() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef(null);
   const [loaded, setLoaded] = useState(false);
-  const [hasInteracted, setHasInteracted] = useState(false);
+
+  // ONE persistent Audio instance, created once
+  const audioRef = useRef(null);
+  const hasInteractedRef = useRef(false);
+
+  // Create the Audio object once on mount
+  useEffect(() => {
+    const audio = new Audio('/audio/bgm.mp3');
+    audio.loop = true;
+    audio.volume = 0.3;
+    audio.preload = 'auto';
+    audioRef.current = audio;
+
+    return () => {
+      audio.pause();
+      audio.src = '';
+    };
+  }, []);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -139,25 +164,23 @@ function App() {
     };
   }, []);
 
-  const handleInteraction = () => {
-    if (!hasInteracted) {
-      setHasInteracted(true);
-      if (audioRef.current) {
-        audioRef.current.volume = 0.3;
-        audioRef.current.play().then(() => {
-          setIsPlaying(true);
-        }).catch(e => console.log("Audio autoplay failed:", e));
+  // First interaction: start music once, never again
+  const handleFirstInteraction = useCallback(async () => {
+    if (hasInteractedRef.current) return;
+    hasInteractedRef.current = true;
+
+    if (audioRef.current) {
+      try {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      } catch (e) {
+        console.log("Audio autoplay blocked by browser — user can use the music player.");
       }
     }
-  };
+  }, []);
 
   return (
-    <div className="relative w-full bg-[#fff0f5] min-h-screen text-[#4a4a4a] overflow-hidden font-nunito" onClick={handleInteraction}>
-      
-      {/* Background ambient music - local file */}
-      <audio ref={audioRef} loop preload="auto">
-        <source src="/audio/bgm.mp3" type="audio/mpeg" />
-      </audio>
+    <div className="relative w-full bg-[#fff0f5] min-h-screen text-[#4a4a4a] overflow-hidden font-nunito" onClick={handleFirstInteraction}>
 
       {/* Global Pastel Background Elements */}
       <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">

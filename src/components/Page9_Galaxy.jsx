@@ -1,6 +1,6 @@
-import React, { useRef, useState, useMemo, Suspense, useEffect, useCallback } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls, Stars, useTexture, useProgress, Html } from '@react-three/drei';
+import React, { useRef, useState, useMemo, useEffect, useCallback } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { OrbitControls, Stars } from '@react-three/drei';
 import * as THREE from 'three';
 import photosData from '../data/photos.json';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -21,15 +21,28 @@ const galaxyPhotos = Array.from({ length: GALAXY_COUNT }).map((_, i) => {
   return { ...photo, uniqueId: i, position: [x, y, z] };
 });
 
-// Photo node — useTexture is called UNCONDITIONALLY (no try/catch around hooks)
+// Photo node — uses THREE.TextureLoader directly instead of drei's useTexture.
+// useTexture uses Suspense (throws a Promise), which causes "Rendered more hooks
+// than during the previous render" because hooks before the throw run but hooks
+// after it don't. By loading textures in useEffect, the hook count is constant.
 function PhotoNode({ position, url, caption, onClick }) {
   const ref = useRef();
   const [hovered, setHovered] = useState(false);
+  const [texture, setTexture] = useState(null);
   const randomSpeed = useMemo(() => (Math.random() * 0.002) + 0.001, []);
 
-  // useTexture MUST be called unconditionally. The ErrorBoundary + Suspense
-  // wrapper around this component will catch load failures.
-  const texture = useTexture(url);
+  // Load texture via THREE.TextureLoader — no Suspense, no hook count mismatch
+  useEffect(() => {
+    let cancelled = false;
+    const loader = new THREE.TextureLoader();
+    loader.load(
+      url,
+      (tex) => { if (!cancelled) setTexture(tex); },
+      undefined,
+      (err) => { console.warn(`[Galaxy] Failed to load texture: ${url}`); }
+    );
+    return () => { cancelled = true; };
+  }, [url]);
 
   useFrame(() => {
     if (ref.current) {
@@ -65,17 +78,6 @@ function PhotoNode({ position, url, caption, onClick }) {
   );
 }
 
-// Wrapper that catches individual photo errors so one bad photo doesn't kill the gallery
-function SafePhotoNode(props) {
-  return (
-    <ErrorBoundary name={`PhotoNode-${props.uniqueId}`} fallback={null}>
-      <Suspense fallback={null}>
-        <PhotoNode {...props} />
-      </Suspense>
-    </ErrorBoundary>
-  );
-}
-
 // The actual 3D scene
 function GalaxyScene({ onPhotoClick }) {
   return (
@@ -86,9 +88,8 @@ function GalaxyScene({ onPhotoClick }) {
 
       <group>
         {galaxyPhotos.map((photo) => (
-          <SafePhotoNode
+          <PhotoNode
             key={photo.uniqueId}
-            uniqueId={photo.uniqueId}
             position={photo.position}
             url={photo.url}
             caption={photo.caption}
@@ -110,27 +111,7 @@ function GalaxyScene({ onPhotoClick }) {
   );
 }
 
-// Loading overlay shown outside the canvas
-function LoadingOverlay() {
-  const { progress, active } = useProgress();
 
-  if (!active) return null;
-
-  return (
-    <div className="absolute inset-0 z-30 flex items-center justify-center bg-white/60 backdrop-blur-md pointer-events-none">
-      <div className="text-center glass-card p-8">
-        <p className="text-xl font-pacifico text-pink-500 mb-4 drop-shadow-sm">Gathering Memories...</p>
-        <div className="w-48 h-2 bg-pink-100 rounded-full overflow-hidden shadow-inner border border-pink-200">
-          <div
-            className="h-full bg-gradient-to-r from-pink-300 to-pink-500 transition-all duration-300"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-        <p className="text-sm text-pink-400 mt-2 font-bold">{Math.round(progress)}%</p>
-      </div>
-    </div>
-  );
-}
 
 // Canvas fallback if the whole 3D scene fails
 function CanvasFallback() {
@@ -195,11 +176,8 @@ export default function Page9_Galaxy() {
               });
             }}
           >
-            <Suspense fallback={null}>
-              <GalaxyScene onPhotoClick={setSelected} />
-            </Suspense>
+            <GalaxyScene onPhotoClick={setSelected} />
           </Canvas>
-          <LoadingOverlay />
         </ErrorBoundary>
       </div>
 
