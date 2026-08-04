@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Lenis from 'lenis';
 import ErrorBoundary from './components/ErrorBoundary';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import Page1_Loading from './components/Page1_Loading';
 import Page2_Welcome from './components/Page2_Welcome';
 import Page3_PhotoIntro from './components/Page3_PhotoIntro';
 import Page4_FunnyQuestion from './components/Page4_FunnyQuestion';
 import Page5_GiftBox from './components/Page5_GiftBox';
-import Page6_FriendshipQuiz from './components/Page6_FriendshipQuiz';
 import Page7_FriendshipMeter from './components/Page7_FriendshipMeter';
 import Page8_Awards from './components/Page8_Awards';
 import Page9_Galaxy from './components/Page9_Galaxy';
@@ -18,10 +18,102 @@ import Page13_Cake from './components/Page13_Cake';
 import Page14_PhotoWall from './components/Page14_PhotoWall';
 import Page15_Final from './components/Page15_Final';
 
+// Floating Music Player Component
+function MusicPlayer({ audioRef, isPlaying, setIsPlaying }) {
+  const [volume, setVolume] = useState(0.3);
+  const [isMuted, setIsMuted] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const togglePlay = useCallback(() => {
+    if (!audioRef.current) return;
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      audioRef.current.volume = isMuted ? 0 : volume;
+      audioRef.current.play().catch(e => console.log("Audio play failed:", e));
+      setIsPlaying(true);
+    }
+  }, [isPlaying, isMuted, volume, audioRef, setIsPlaying]);
+
+  const handleVolumeChange = useCallback((e) => {
+    const newVol = parseFloat(e.target.value);
+    setVolume(newVol);
+    if (audioRef.current) {
+      audioRef.current.volume = isMuted ? 0 : newVol;
+    }
+  }, [isMuted, audioRef]);
+
+  const toggleMute = useCallback(() => {
+    setIsMuted(prev => {
+      const nextMuted = !prev;
+      if (audioRef.current) {
+        audioRef.current.volume = nextMuted ? 0 : volume;
+      }
+      return nextMuted;
+    });
+  }, [volume, audioRef]);
+
+  return (
+    <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-2">
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.9 }}
+            className="glass-card p-4 flex flex-col items-center gap-3 mb-2 min-w-[180px]"
+          >
+            <p className="text-sm font-nunito font-bold text-pink-500">🎵 Birthday Music</p>
+            
+            <div className="flex items-center gap-3 w-full">
+              <button 
+                onClick={togglePlay}
+                className="w-10 h-10 rounded-full bg-gradient-to-r from-pink-300 to-pink-400 text-white flex items-center justify-center shadow-md hover:shadow-lg transition-all hover:scale-105 text-lg"
+              >
+                {isPlaying ? '⏸' : '▶'}
+              </button>
+              
+              <button
+                onClick={toggleMute}
+                className="text-lg w-8 h-8 flex items-center justify-center hover:scale-110 transition-transform"
+              >
+                {isMuted ? '🔇' : volume > 0.5 ? '🔊' : '🔉'}
+              </button>
+            </div>
+
+            <input 
+              type="range" 
+              min="0" max="1" step="0.05" 
+              value={volume}
+              onChange={handleVolumeChange}
+              className="w-full h-1.5 bg-pink-100 rounded-full appearance-none cursor-pointer accent-pink-400"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <motion.button
+        onClick={() => setIsOpen(prev => !prev)}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        className={`w-14 h-14 rounded-full shadow-lg flex items-center justify-center text-2xl border-2 transition-all ${
+          isPlaying 
+            ? 'bg-gradient-to-r from-pink-300 to-pink-400 border-white text-white animate-bounce-slow' 
+            : 'bg-white border-pink-200 text-pink-400'
+        }`}
+      >
+        🎵
+      </motion.button>
+    </div>
+  );
+}
+
 function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
   const [loaded, setLoaded] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -48,10 +140,14 @@ function App() {
   }, []);
 
   const handleInteraction = () => {
-    if (!isPlaying && audioRef.current) {
-      audioRef.current.volume = 0.3;
-      audioRef.current.play().catch(e => console.log("Audio play failed:", e));
-      setIsPlaying(true);
+    if (!hasInteracted) {
+      setHasInteracted(true);
+      if (audioRef.current) {
+        audioRef.current.volume = 0.3;
+        audioRef.current.play().then(() => {
+          setIsPlaying(true);
+        }).catch(e => console.log("Audio autoplay failed:", e));
+      }
     }
   };
 
@@ -59,7 +155,7 @@ function App() {
     <div className="relative w-full bg-[#fff0f5] min-h-screen text-[#4a4a4a] overflow-hidden font-nunito" onClick={handleInteraction}>
       
       {/* Background ambient music - local file */}
-      <audio ref={audioRef} loop>
+      <audio ref={audioRef} loop preload="auto">
         <source src="/audio/bgm.mp3" type="audio/mpeg" />
       </audio>
 
@@ -82,24 +178,30 @@ function App() {
       {!loaded ? (
         <Page1_Loading onComplete={() => setLoaded(true)} />
       ) : (
-        <main>
-          <ErrorBoundary name="Welcome"><Page2_Welcome /></ErrorBoundary>
-          <ErrorBoundary name="PhotoIntro"><Page3_PhotoIntro /></ErrorBoundary>
-          <ErrorBoundary name="FunnyQuestion"><Page4_FunnyQuestion /></ErrorBoundary>
-          <ErrorBoundary name="GiftBox"><Page5_GiftBox /></ErrorBoundary>
-          <ErrorBoundary name="FriendshipMeter"><Page7_FriendshipMeter /></ErrorBoundary>
-          <ErrorBoundary name="Awards"><Page8_Awards /></ErrorBoundary>
-          <ErrorBoundary name="Galaxy"><Page9_Galaxy /></ErrorBoundary>
-          <ErrorBoundary name="Scrapbook"><Page10_Scrapbook /></ErrorBoundary>
-          <ErrorBoundary name="CatchStars"><Page11_CatchStars /></ErrorBoundary>
-          <ErrorBoundary name="LuckyWheel"><Page12_LuckyWheel /></ErrorBoundary>
-          <ErrorBoundary name="Cake"><Page13_Cake /></ErrorBoundary>
-          <ErrorBoundary name="PhotoWall"><Page14_PhotoWall /></ErrorBoundary>
-          <ErrorBoundary name="Final"><Page15_Final /></ErrorBoundary>
-        </main>
+        <>
+          <main>
+            <ErrorBoundary name="Welcome"><Page2_Welcome /></ErrorBoundary>
+            <ErrorBoundary name="PhotoIntro"><Page3_PhotoIntro /></ErrorBoundary>
+            <ErrorBoundary name="FunnyQuestion"><Page4_FunnyQuestion /></ErrorBoundary>
+            <ErrorBoundary name="GiftBox"><Page5_GiftBox /></ErrorBoundary>
+            <ErrorBoundary name="FriendshipMeter"><Page7_FriendshipMeter /></ErrorBoundary>
+            <ErrorBoundary name="Awards"><Page8_Awards /></ErrorBoundary>
+            <ErrorBoundary name="Galaxy"><Page9_Galaxy /></ErrorBoundary>
+            <ErrorBoundary name="Scrapbook"><Page10_Scrapbook /></ErrorBoundary>
+            <ErrorBoundary name="CatchStars"><Page11_CatchStars /></ErrorBoundary>
+            <ErrorBoundary name="LuckyWheel"><Page12_LuckyWheel /></ErrorBoundary>
+            <ErrorBoundary name="Cake"><Page13_Cake /></ErrorBoundary>
+            <ErrorBoundary name="PhotoWall"><Page14_PhotoWall /></ErrorBoundary>
+            <ErrorBoundary name="Final"><Page15_Final /></ErrorBoundary>
+          </main>
+
+          {/* Floating Music Player */}
+          <MusicPlayer audioRef={audioRef} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+        </>
       )}
     </div>
   );
 }
 
 export default App;
+

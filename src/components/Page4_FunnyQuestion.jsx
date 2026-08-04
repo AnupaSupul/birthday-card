@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 
@@ -8,26 +8,54 @@ export default function Page4_FunnyQuestion() {
   const [answered, setAnswered] = useState(false);
   const [noPosition, setNoPosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef(null);
+  const noBtnRef = useRef(null);
 
-  const handleNoHover = () => {
-    if (answered) return;
-    
-    // Evade logic (Mode 1)
-    const maxX = 150;
-    const maxY = 100;
-    const randomX = Math.floor(Math.random() * maxX * 2) - maxX;
-    const randomY = Math.floor(Math.random() * maxY * 2) - maxY;
-    
-    setNoPosition({ x: randomX, y: randomY });
-  };
+  // Smooth evasion: when mouse moves near NO button, it runs away
+  const handleMouseMove = useCallback((e) => {
+    if (answered || noScale <= 0 || !noBtnRef.current || !containerRef.current) return;
+
+    const btnRect = noBtnRef.current.getBoundingClientRect();
+    const containerRect = containerRef.current.getBoundingClientRect();
+
+    const btnCenterX = btnRect.left + btnRect.width / 2;
+    const btnCenterY = btnRect.top + btnRect.height / 2;
+
+    const dx = e.clientX - btnCenterX;
+    const dy = e.clientY - btnCenterY;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    // Only flee when mouse is within 120px of the button
+    if (distance < 120) {
+      // Calculate flee direction (opposite of mouse approach)
+      const angle = Math.atan2(dy, dx);
+      const fleeDistance = 100 + Math.random() * 60;
+      
+      let newX = -Math.cos(angle) * fleeDistance;
+      let newY = -Math.sin(angle) * fleeDistance;
+
+      // Clamp within the card
+      const maxX = (containerRect.width / 2) - 80;
+      const maxY = 120;
+      newX = Math.max(-maxX, Math.min(maxX, noPosition.x + newX));
+      newY = Math.max(-maxY, Math.min(maxY, noPosition.y + newY));
+
+      setNoPosition({ x: newX, y: newY });
+    }
+  }, [answered, noScale, noPosition]);
 
   const handleNoClick = () => {
-    // Mode 2 logic
     if (noScale <= 0.2) {
-      setNoScale(0); // Disappear
+      setNoScale(0);
     } else {
-      setNoScale(prev => prev - 0.2);
-      setYesScale(prev => prev + 0.3);
+      setNoScale(prev => prev - 0.15);
+      setYesScale(prev => prev + 0.2);
+      // Also flee on click
+      const maxX = 150;
+      const maxY = 100;
+      setNoPosition({ 
+        x: Math.floor(Math.random() * maxX * 2) - maxX, 
+        y: Math.floor(Math.random() * maxY * 2) - maxY 
+      });
     }
   };
 
@@ -37,12 +65,16 @@ export default function Page4_FunnyQuestion() {
       particleCount: 150,
       spread: 70,
       origin: { y: 0.6 },
-      colors: ['#ec4899', '#a855f7', '#3b82f6']
+      colors: ['#ffb6c1', '#ff69b4', '#ffc0cb', '#ffd1dc']
     });
   };
 
   return (
-    <section className="min-h-[80vh] flex flex-col items-center justify-center relative py-20 overflow-hidden" ref={containerRef}>
+    <section 
+      className="min-h-[80vh] flex flex-col items-center justify-center relative py-20 overflow-hidden" 
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+    >
       <motion.div 
         initial={{ opacity: 0, scale: 0.8 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -65,7 +97,7 @@ export default function Page4_FunnyQuestion() {
                 Will the Birthday Girl treat me to cake? 🍰
               </p>
 
-              <div className="flex flex-col md:flex-row items-center justify-center gap-8 min-h-[120px]">
+              <div className="flex flex-col md:flex-row items-center justify-center gap-8 min-h-[120px] relative">
                 <motion.button
                   whileHover={{ scale: yesScale * 1.1 }}
                   whileTap={{ scale: yesScale * 0.95 }}
@@ -78,12 +110,11 @@ export default function Page4_FunnyQuestion() {
 
                 {noScale > 0 && (
                   <motion.button
+                    ref={noBtnRef}
                     animate={{ x: noPosition.x, y: noPosition.y, scale: noScale }}
-                    onMouseEnter={handleNoHover}
+                    transition={{ type: 'spring', stiffness: 200, damping: 15 }}
                     onClick={handleNoClick}
-                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                    className="px-8 py-4 bg-white text-gray-400 hover:bg-gray-100 border-2 border-gray-200 rounded-full text-xl font-nunito font-bold shadow-md absolute md:relative z-10 transition-colors"
-                    style={{ left: noPosition.x ? 'auto' : undefined }}
+                    className="px-8 py-4 bg-white text-gray-400 hover:bg-gray-100 border-2 border-gray-200 rounded-full text-xl font-nunito font-bold shadow-md z-10 transition-colors cursor-pointer"
                   >
                     NO 😶
                   </motion.button>
@@ -108,3 +139,4 @@ export default function Page4_FunnyQuestion() {
     </section>
   );
 }
+

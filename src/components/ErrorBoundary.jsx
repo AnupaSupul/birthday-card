@@ -18,10 +18,10 @@ export default class ErrorBoundary extends React.Component {
     if (this.state.hasError) {
       return (
         this.props.fallback || (
-          <div className="min-h-screen flex items-center justify-center bg-[#0f0c29] text-white">
+          <div className="min-h-screen flex items-center justify-center bg-transparent">
             <div className="glass-card p-8 text-center max-w-md">
-              <p className="text-2xl mb-2">✨</p>
-              <p className="text-lg font-outfit text-gray-300">
+              <p className="text-2xl mb-2">🌸</p>
+              <p className="text-lg font-nunito text-gray-500 font-semibold">
                 This section is taking a nap. Scroll on!
               </p>
             </div>

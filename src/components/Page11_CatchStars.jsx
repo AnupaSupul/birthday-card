@@ -1,40 +1,52 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 
 const starContent = [
-  "You're the brightest star! ⭐",
+  "You're the brightest! 🌸",
   "A funny memory unlocked: That time we got lost! 😂",
   "Wish: Infinite pizza for you! 🍕",
   "💖💖💖",
   "Another wish: May your phone battery never die! 🔋",
-  "Sticker: 🦋"
+  "You deserve all the cake today! 🎂",
+  "Best friend award: UNLOCKED 🏆",
+  "Secret message: You're amazing! 🦋",
+  "Birthday hug incoming! 🤗",
 ];
 
-function FallingStar({ onCatch }) {
-  const [position] = useState({
-    x: Math.random() * 80 + 10, // 10% to 90%
-    delay: Math.random() * 5,
-    duration: Math.random() * 5 + 5 // 5 to 10 seconds
-  });
+const fallingEmojis = ['🌸', '💖', '🦋', '🌷', '🌼', '💐', '🎀', '✨', '🌺', '💕'];
+
+function FallingItem({ onCatch, index }) {
+  // Compute all random values ONCE at mount via useMemo
+  const config = useMemo(() => ({
+    x: Math.random() * 80 + 10,
+    delay: Math.random() * 8,
+    duration: Math.random() * 6 + 6,
+    emoji: fallingEmojis[index % fallingEmojis.length],
+    size: Math.random() > 0.5 ? 'text-4xl' : 'text-3xl',
+  }), [index]);
 
   return (
     <motion.div
-      initial={{ y: -100, x: `${position.x}vw`, opacity: 0 }}
-      animate={{ y: '120vh', opacity: [0, 1, 1, 0] }}
-      transition={{ 
-        duration: position.duration, 
-        delay: position.delay, 
-        repeat: Infinity,
-        ease: "linear"
+      initial={{ y: -80, x: `${config.x}vw`, opacity: 0, rotate: 0 }}
+      animate={{ 
+        y: '110vh', 
+        opacity: [0, 0.9, 0.9, 0],
+        rotate: [0, 15, -15, 10, -10, 0],
       }}
-      className="absolute cursor-pointer z-10 text-4xl hover:scale-125 transition-transform"
+      transition={{ 
+        duration: config.duration, 
+        delay: config.delay, 
+        repeat: Infinity,
+        ease: "linear",
+      }}
+      className={`absolute cursor-pointer z-10 ${config.size} hover:scale-150 transition-transform select-none`}
       onClick={(e) => {
         e.stopPropagation();
         onCatch(e.clientX, e.clientY);
       }}
     >
-      ⭐
+      {config.emoji}
     </motion.div>
   );
 }
@@ -44,10 +56,10 @@ export default function Page11_CatchStars() {
 
   const handleCatch = (x, y) => {
     confetti({
-      particleCount: 50,
-      spread: 40,
+      particleCount: 60,
+      spread: 50,
       origin: { x: x / window.innerWidth, y: y / window.innerHeight },
-      colors: ['#fbbf24', '#f59e0b', '#ffffff']
+      colors: ['#ffb6c1', '#ff69b4', '#ffc0cb', '#ffd1dc', '#ffffff']
     });
 
     const content = starContent[Math.floor(Math.random() * starContent.length)];
@@ -59,18 +71,18 @@ export default function Page11_CatchStars() {
   };
 
   return (
-    <section className="min-h-screen relative overflow-hidden bg-gradient-to-b from-[#0f0c29] to-[#302b63] py-20 flex flex-col items-center">
+    <section className="min-h-screen relative overflow-hidden bg-transparent py-20 flex flex-col items-center">
       
-      <div className="z-20 text-center pointer-events-none mt-10">
-        <h2 className="text-4xl md:text-5xl font-outfit font-bold text-yellow-300 mb-4 drop-shadow-lg">
-          Catch a Star
+      <div className="z-20 text-center pointer-events-none mt-10 px-4">
+        <h2 className="text-4xl md:text-5xl font-pacifico font-bold text-[#ff8da1] mb-4 drop-shadow-sm">
+          Catch a Flower 🌸
         </h2>
-        <p className="text-xl text-gray-300">Tap a falling star to reveal a surprise!</p>
+        <p className="text-xl text-gray-500 font-nunito font-semibold">Tap a falling flower or heart to reveal a surprise!</p>
       </div>
 
-      {/* Falling Stars */}
-      {[...Array(15)].map((_, i) => (
-        <FallingStar key={i} onCatch={handleCatch} />
+      {/* Falling Items */}
+      {[...Array(20)].map((_, i) => (
+        <FallingItem key={i} index={i} onCatch={handleCatch} />
       ))}
 
       {/* Popup Content */}
@@ -80,12 +92,13 @@ export default function Page11_CatchStars() {
             initial={{ opacity: 0, scale: 0.5, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.5, y: -50 }}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 glass-card p-8 text-center min-w-[300px]"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 glass-card p-8 text-center min-w-[300px] border border-pink-200"
           >
-            <p className="text-2xl font-outfit font-bold text-white">{caughtContent}</p>
+            <p className="text-2xl font-nunito font-bold text-pink-500">{caughtContent}</p>
           </motion.div>
         )}
       </AnimatePresence>
     </section>
   );
 }
+
