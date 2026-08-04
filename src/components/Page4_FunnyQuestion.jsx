@@ -47,8 +47,9 @@ export default function Page4_FunnyQuestion() {
         initial={{ opacity: 0, scale: 0.8 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        className="glass p-10 max-w-2xl w-full mx-4 text-center z-10"
+        className="glass-card p-10 max-w-2xl w-full mx-4 text-center z-10 relative"
       >
+        <div className="absolute -top-8 -left-4 text-5xl transform -rotate-12 animate-sway">🎂</div>
         <AnimatePresence mode="wait">
           {!answered ? (
             <motion.div
@@ -57,10 +58,10 @@ export default function Page4_FunnyQuestion() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0, y: -20 }}
             >
-              <h2 className="text-3xl md:text-5xl font-outfit font-bold mb-12">
-                🎂 Important Birthday Question
+              <h2 className="text-3xl md:text-5xl font-pacifico font-bold mb-8 text-[#ff8da1]">
+                Important Birthday Question...
               </h2>
-              <p className="text-xl md:text-2xl mb-12">
+              <p className="text-xl md:text-2xl mb-12 font-nunito font-semibold text-gray-600">
                 Will the Birthday Girl treat me to cake? 🍰
               </p>
 
@@ -70,7 +71,7 @@ export default function Page4_FunnyQuestion() {
                   whileTap={{ scale: yesScale * 0.95 }}
                   onClick={handleYesClick}
                   style={{ scale: yesScale }}
-                  className="px-8 py-4 bg-green-500 hover:bg-green-600 rounded-full text-xl font-bold shadow-lg shadow-green-500/30 transition-colors z-20"
+                  className="btn-cute px-8 py-4 text-xl z-20"
                 >
                   YES 😎
                 </motion.button>
@@ -81,7 +82,7 @@ export default function Page4_FunnyQuestion() {
                     onMouseEnter={handleNoHover}
                     onClick={handleNoClick}
                     transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                    className="px-8 py-4 bg-red-500 hover:bg-red-600 rounded-full text-xl font-bold shadow-lg shadow-red-500/30 absolute md:relative z-10"
+                    className="px-8 py-4 bg-white text-gray-400 hover:bg-gray-100 border-2 border-gray-200 rounded-full text-xl font-nunito font-bold shadow-md absolute md:relative z-10 transition-colors"
                     style={{ left: noPosition.x ? 'auto' : undefined }}
                   >
                     NO 😶
@@ -96,10 +97,10 @@ export default function Page4_FunnyQuestion() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ type: 'spring', bounce: 0.5 }}
             >
-              <h2 className="text-4xl md:text-6xl font-outfit font-bold text-gradient mb-6">
+              <h2 className="text-4xl md:text-6xl font-pacifico font-bold text-gradient mb-6 leading-tight">
                 I knew you'd make the right decision 😂
               </h2>
-              <p className="text-2xl">Can't wait for the cake! 🍰</p>
+              <p className="text-2xl font-nunito text-gray-600 font-bold">Can't wait for the cake! 🍓</p>
             </motion.div>
           )}
         </AnimatePresence>

@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 
 const segments = [
-  { icon: '🍕', text: 'Buy everyone pizza', color: '#ef4444' }, // red
-  { icon: '🍦', text: 'Ice cream time', color: '#f97316' }, // orange
-  { icon: '📸', text: 'Take 20 selfies', color: '#f59e0b' }, // amber
-  { icon: '🎬', text: 'Movie Night', color: '#84cc16' }, // lime
-  { icon: '☕', text: 'Coffee Treat', color: '#06b6d4' }, // cyan
-  { icon: '😂', text: 'Tell your funniest joke', color: '#8b5cf6' }, // violet
+  { icon: '🍕', text: 'Buy everyone pizza', color: '#ffb3ba' }, // pastel pink
+  { icon: '🍦', text: 'Ice cream time', color: '#ffdfba' }, // pastel orange
+  { icon: '📸', text: 'Take 20 selfies', color: '#ffffba' }, // pastel yellow
+  { icon: '🎬', text: 'Movie Night', color: '#baffc9' }, // pastel green
+  { icon: '☕', text: 'Coffee Treat', color: '#bae1ff' }, // pastel blue
+  { icon: '😂', text: 'Tell your funniest joke', color: '#e6e6fa' }, // pastel purple
 ];
 
 export default function Page12_LuckyWheel() {
@@ -69,16 +69,17 @@ export default function Page12_LuckyWheel() {
 
   return (
     <section className="min-h-screen flex flex-col items-center justify-center py-20 px-4">
-      <div className="text-center mb-12">
-        <h2 className="text-4xl md:text-5xl font-outfit font-bold mb-4 text-gradient">
+      <div className="text-center mb-12 relative z-10">
+        <div className="absolute -top-8 -left-4 text-4xl animate-float opacity-70">🎈</div>
+        <h2 className="text-4xl md:text-5xl font-pacifico font-bold mb-4 text-[#ff8da1] drop-shadow-sm">
           Lucky Birthday Wheel
         </h2>
-        <p className="text-xl text-gray-300">Spin the wheel to decide your fate!</p>
+        <p className="text-xl text-gray-500 font-nunito font-semibold">Spin the wheel to decide your fate!</p>
       </div>
 
       <div className="relative w-80 h-80 md:w-96 md:h-96">
         {/* Pointer */}
-        <div className="absolute top-[-20px] left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[15px] border-l-transparent border-r-[15px] border-r-transparent border-t-[30px] border-t-white z-20 filter drop-shadow-md"></div>
+        <div className="absolute top-[-20px] left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[15px] border-l-transparent border-r-[15px] border-r-transparent border-t-[30px] border-t-pink-400 z-20 filter drop-shadow-md"></div>
         
         {/* Wheel */}
         <motion.div 
@@ -102,7 +103,7 @@ export default function Page12_LuckyWheel() {
         <button 
           onClick={spinWheel}
           disabled={isSpinning}
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-white rounded-full z-10 text-gray-800 font-bold font-outfit shadow-xl hover:scale-105 transition-transform disabled:opacity-80 disabled:hover:scale-100 flex items-center justify-center uppercase tracking-widest text-sm"
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-white rounded-full z-10 text-pink-500 font-bold font-nunito shadow-xl hover:scale-105 transition-transform disabled:opacity-80 disabled:hover:scale-100 flex items-center justify-center uppercase tracking-widest text-sm border-2 border-pink-200"
         >
           Spin
         </button>
@@ -113,10 +114,10 @@ export default function Page12_LuckyWheel() {
           <motion.div 
             initial={{ opacity: 0, scale: 0.5, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            className="glass-card px-8 py-4 text-center"
+            className="glass-card px-8 py-4 text-center bg-white/80"
           >
-            <h3 className="text-2xl font-outfit font-bold" style={{ color: result.color }}>
-              {result.icon} {result.text}
+            <h3 className="text-2xl font-nunito font-bold text-gray-700">
+              {result.icon} <span style={{ color: '#ff69b4' }}>{result.text}</span>
             </h3>
           </motion.div>
         )}

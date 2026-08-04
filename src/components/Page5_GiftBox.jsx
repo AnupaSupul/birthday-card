@@ -5,10 +5,10 @@ import { FaGift } from 'react-icons/fa';
 
 const surprises = [
   { type: 'text', content: "You're getting older, but not wiser! 😂" },
-  { type: 'emoji', content: "🦄✨💖" },
+  { type: 'emoji', content: "Congratulations! You're now officially at the age where naps count as a hobby. 😴🎉" },
   { type: 'quote', content: "Good friends don't let you do stupid things... alone." },
   { type: 'text', content: "Here is my gift: My amazing presence. You're welcome. 😎" },
-  { type: 'emoji', content: "🎁🧸🎈" },
+  { type: 'emoji', content: "Breaking News 📰: Local pizza stores are preparing for unusually high demand because it's your birthday. 🍕😂" },
 ];
 
 export default function Page5_GiftBox() {
@@ -36,11 +36,13 @@ export default function Page5_GiftBox() {
 
   return (
     <section className="min-h-screen flex flex-col items-center justify-center relative py-20">
-      <div className="text-center mb-16 z-10">
-        <h2 className="text-4xl md:text-5xl font-outfit font-bold text-gradient mb-4">
+      <div className="text-center mb-16 z-10 relative">
+        <div className="absolute -top-10 -left-10 text-4xl animate-float opacity-70">🌸</div>
+        <div className="absolute -bottom-5 -right-5 text-3xl animate-sway opacity-70">🎀</div>
+        <h2 className="text-4xl md:text-5xl font-pacifico font-bold text-[#ff8da1] mb-4 drop-shadow-sm">
           A Special Gift Just For You
         </h2>
-        <p className="text-xl text-gray-300">Tap the box to see what's inside!</p>
+        <p className="text-xl text-gray-500 font-nunito font-semibold">Tap the box to see what's inside!</p>
       </div>
 
       <div className="relative z-10 h-64 flex flex-col items-center justify-center">
@@ -68,20 +70,21 @@ export default function Page5_GiftBox() {
               initial={{ scale: 0.5, opacity: 0, y: 50 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.5, opacity: 0 }}
-              className="glass p-8 max-w-md text-center"
+              className="glass-card p-8 max-w-md text-center relative"
             >
+              <div className="absolute -top-4 -right-2 text-3xl rotate-12">✨</div>
               <motion.div 
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", delay: 0.2 }}
-                className="text-3xl md:text-4xl font-outfit mb-6"
+                className="text-3xl md:text-4xl font-pacifico mb-6 text-gray-700 leading-tight"
               >
                 {currentSurprise?.content}
               </motion.div>
               
               <button 
                 onClick={handleOpen}
-                className="text-sm uppercase tracking-widest text-gray-400 hover:text-white transition-colors mt-4"
+                className="text-sm uppercase tracking-widest text-pink-400 font-bold hover:text-pink-600 transition-colors mt-4 bg-pink-50 px-4 py-2 rounded-full border border-pink-100"
               >
                 Try Again
               </button>

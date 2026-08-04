@@ -38,7 +38,7 @@ export default function Page15_Final() {
   }, [isInView]);
 
   return (
-    <section className="min-h-screen relative flex flex-col items-center justify-center py-20 px-4 bg-[#050510] text-center overflow-hidden" ref={ref}>
+    <section className="min-h-screen relative flex flex-col items-center justify-center py-20 px-4 bg-transparent text-center overflow-hidden" ref={ref}>
       
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -50,7 +50,7 @@ export default function Page15_Final() {
             transition={{ duration: Math.random() * 10 + 10, repeat: Infinity, delay: Math.random() * 5 }}
             className="absolute text-2xl"
           >
-            🏮
+            🌸
           </motion.div>
         ))}
         {[...Array(10)].map((_, i) => (
@@ -89,7 +89,7 @@ export default function Page15_Final() {
             initial={{ scale: 0, opacity: 0 }}
             animate={isInView ? { scale: 1, opacity: 1 } : {}}
             transition={{ duration: 1 }}
-            className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-yellow-400 shadow-[0_0_50px_rgba(250,204,21,0.5)] z-10 relative bg-gray-200"
+            className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-pink-300 shadow-[0_0_50px_rgba(255,182,193,0.5)] z-10 relative bg-gray-100"
           >
             <img src={photosData[0].url} alt="Queen" className="w-full h-full object-cover" onError={(e) => { e.target.style.background = 'linear-gradient(135deg, #f472b6, #a855f7, #60a5fa)'; e.target.src = ''; }} />
           </motion.div>
@@ -99,7 +99,7 @@ export default function Page15_Final() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 1.5, duration: 1 }}
-          className="text-3xl md:text-5xl font-outfit font-bold text-yellow-300 mb-8 tracking-wider"
+          className="text-3xl md:text-5xl font-pacifico font-bold text-[#ff8da1] mb-8 tracking-wider drop-shadow-sm"
         >
           Official Birthday Queen
         </motion.h2>
@@ -108,15 +108,15 @@ export default function Page15_Final() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ delay: 2.5, duration: 2 }}
-          className="glass-card p-8 md:p-12 mb-12"
+          className="glass-card p-8 md:p-12 mb-12 bg-white/60 shadow-lg"
         >
-          <p className="text-xl md:text-2xl font-inter leading-relaxed text-gray-200 mb-6">
+          <p className="text-xl md:text-2xl font-nunito leading-relaxed text-gray-700 font-bold mb-6">
             Happy Birthday! 🎉
           </p>
-          <p className="text-lg md:text-xl font-inter leading-relaxed text-gray-300 mb-6">
+          <p className="text-lg md:text-xl font-nunito leading-relaxed text-gray-600 font-semibold mb-6">
             Thank you for being such an amazing friend. I hope this year brings you lots of happiness, unforgettable memories, success, laughter, good health, and countless reasons to smile.
           </p>
-          <p className="text-lg md:text-xl font-inter leading-relaxed text-gray-300 font-semibold text-pink-300">
+          <p className="text-lg md:text-xl font-nunito leading-relaxed font-bold text-pink-500">
             Stay exactly the wonderful person you are.<br/>Have the most amazing birthday ever! 🎂✨
           </p>
         </motion.div>
@@ -125,11 +125,11 @@ export default function Page15_Final() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ delay: 4, duration: 1 }}
-          className="text-gray-400 text-sm md:text-base space-y-2 font-mono"
+          className="text-gray-500 text-sm md:text-base space-y-2 font-nunito font-semibold"
         >
           <p>Made with lots of coffee ☕</p>
           <p>Lots of memories 📸</p>
-          <p>And a little bit of coding 💻</p>
+          <p>And a little bit of magic ✨</p>
         </motion.div>
 
       </div>

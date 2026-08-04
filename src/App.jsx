@@ -56,18 +56,27 @@ function App() {
   };
 
   return (
-    <div className="relative w-full bg-background min-h-screen text-foreground overflow-hidden" onClick={handleInteraction}>
+    <div className="relative w-full bg-[#fff0f5] min-h-screen text-[#4a4a4a] overflow-hidden font-nunito" onClick={handleInteraction}>
       
-      {/* Background ambient music - placeholder for now */}
+      {/* Background ambient music - local file */}
       <audio ref={audioRef} loop>
-        <source src="https://cdn.pixabay.com/download/audio/2022/02/07/audio_44747eb4bb.mp3?filename=ambient-piano-amp-strings-10711.mp3" type="audio/mpeg" />
+        <source src="/audio/bgm.mp3" type="audio/mpeg" />
       </audio>
 
-      {/* Global Background Elements */}
-      <div className="fixed inset-0 pointer-events-none z-[-1]">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-600/20 blur-[120px] rounded-full animate-blob"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-600/20 blur-[120px] rounded-full animate-blob" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-[40%] left-[30%] w-[30%] h-[30%] bg-pink-600/20 blur-[120px] rounded-full animate-blob" style={{ animationDelay: '4s' }}></div>
+      {/* Global Pastel Background Elements */}
+      <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#fff0f5] via-[#ffe4e1] to-[#fff0f5] opacity-50"></div>
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#ffb6c1] opacity-30 blur-[100px] rounded-full animate-blob"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-[#ffc0cb] opacity-30 blur-[120px] rounded-full animate-blob" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-[30%] left-[40%] w-[40%] h-[40%] bg-[#ff69b4] opacity-20 blur-[150px] rounded-full animate-blob" style={{ animationDelay: '4s' }}></div>
+        
+        {/* Floating Background Emojis/Decorations */}
+        <div className="absolute top-[15%] left-[10%] text-3xl opacity-40 animate-float" style={{ animationDelay: '1s' }}>🌸</div>
+        <div className="absolute top-[40%] right-[15%] text-4xl opacity-30 animate-float" style={{ animationDelay: '3s' }}>✨</div>
+        <div className="absolute bottom-[20%] left-[20%] text-3xl opacity-40 animate-sway" style={{ animationDelay: '2s' }}>🎀</div>
+        <div className="absolute bottom-[30%] right-[25%] text-2xl opacity-40 animate-float" style={{ animationDelay: '5s' }}>🦋</div>
+        <div className="absolute top-[60%] left-[5%] text-2xl opacity-30 animate-sway" style={{ animationDelay: '0s' }}>🎈</div>
+        <div className="absolute top-[10%] right-[30%] text-2xl opacity-40 animate-float" style={{ animationDelay: '2.5s' }}>🌷</div>
       </div>
 
       {!loaded ? (
@@ -78,7 +87,6 @@ function App() {
           <ErrorBoundary name="PhotoIntro"><Page3_PhotoIntro /></ErrorBoundary>
           <ErrorBoundary name="FunnyQuestion"><Page4_FunnyQuestion /></ErrorBoundary>
           <ErrorBoundary name="GiftBox"><Page5_GiftBox /></ErrorBoundary>
-          <ErrorBoundary name="FriendshipQuiz"><Page6_FriendshipQuiz /></ErrorBoundary>
           <ErrorBoundary name="FriendshipMeter"><Page7_FriendshipMeter /></ErrorBoundary>
           <ErrorBoundary name="Awards"><Page8_Awards /></ErrorBoundary>
           <ErrorBoundary name="Galaxy"><Page9_Galaxy /></ErrorBoundary>

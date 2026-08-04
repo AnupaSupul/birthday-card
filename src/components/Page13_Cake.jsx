@@ -8,8 +8,8 @@ export default function Page13_Cake() {
   const handleBlowCandles = () => {
     setBlownOut(true);
     
-    // Play cheer sound (Using a placeholder sound URL)
-    const cheer = new Audio('https://cdn.pixabay.com/download/audio/2021/08/04/audio_0625c1539c.mp3?filename=cheer-206745.mp3');
+    // Play cheer sound (Using a local sound URL)
+    const cheer = new Audio('/audio/bgm.mp3');
     cheer.volume = 0.5;
     cheer.play().catch(e => console.log(e));
 
@@ -41,8 +41,9 @@ export default function Page13_Cake() {
 
   return (
     <section className="min-h-screen flex flex-col items-center justify-center py-20 relative">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-outfit font-bold text-pink-400 mb-4">
+      <div className="text-center mb-16 relative z-10">
+        <div className="absolute -top-10 -left-6 text-4xl animate-float">🎂</div>
+        <h2 className="text-4xl md:text-5xl font-pacifico font-bold text-[#ff8da1] mb-4 drop-shadow-sm">
           Make a Wish!
         </h2>
       </div>
@@ -105,10 +106,10 @@ export default function Page13_Cake() {
           whileTap={{ scale: 0.95 }}
           onClick={handleBlowCandles}
           disabled={blownOut}
-          className={`mt-16 px-8 py-4 rounded-full text-xl font-bold transition-all shadow-lg ${
+          className={`mt-16 px-10 py-4 text-xl transition-all shadow-lg z-10 ${
             blownOut 
-              ? 'bg-gray-500 text-gray-300 cursor-not-allowed'
-              : 'bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 shadow-purple-500/50 text-white cursor-pointer'
+              ? 'bg-gray-200 text-gray-400 cursor-not-allowed rounded-full font-nunito font-bold border-2 border-gray-300'
+              : 'btn-cute cursor-pointer'
           }`}
         >
           {blownOut ? "Wishes Made! ✨" : "Blow Candles 🌬️"}

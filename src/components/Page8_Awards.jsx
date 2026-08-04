@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const awards = [
   { title: "Best Laugh", icon: "😂", desc: "For always laughing at the worst times." },
   { title: "Professional Food Stealer", icon: "🍕", desc: "No fry is safe when you're around." },
-  { title: "Most Chaotic Human", icon: "🌪️", desc: "A walking natural disaster." },
+  { title: "Professional Troublemaker", icon: "🌪️", desc: "A walking natural disaster." },
   { title: "Certified Drama Queen", icon: "🎭", desc: "Oscar-worthy performances daily." },
   { title: "Selfie Queen", icon: "📸", desc: "Takes 100 photos, posts 1." },
   { title: "Birthday Queen", icon: "👑", desc: "The ruler of today." }
@@ -26,11 +26,12 @@ export default function Page8_Awards() {
 
   return (
     <section className="min-h-screen flex flex-col items-center justify-center relative py-20 px-4">
-      <div className="text-center mb-16 z-10">
-        <h2 className="text-4xl md:text-6xl font-outfit font-bold text-gradient mb-4">
+      <div className="text-center mb-16 z-10 relative">
+        <div className="absolute -top-10 left-10 text-4xl animate-float opacity-70">🌸</div>
+        <h2 className="text-4xl md:text-6xl font-pacifico font-bold text-[#ff8da1] drop-shadow-sm mb-4">
           Best Friend Awards 🏆
         </h2>
-        <p className="text-xl text-gray-300">And the nominees are...</p>
+        <p className="text-xl text-gray-500 font-nunito font-semibold">And the nominees are...</p>
       </div>
 
       <motion.div 
@@ -50,11 +51,11 @@ export default function Page8_Awards() {
             {/* Shimmer effect */}
             <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
             
-            <div className="text-6xl mb-6 bg-white/10 w-24 h-24 rounded-full flex items-center justify-center shadow-inner">
+            <div className="text-6xl mb-6 bg-pink-50 w-24 h-24 rounded-full flex items-center justify-center shadow-inner border border-pink-100">
               {award.icon}
             </div>
-            <h3 className="text-2xl font-outfit font-bold mb-2 text-pink-200">{award.title}</h3>
-            <p className="text-gray-300">{award.desc}</p>
+            <h3 className="text-2xl font-nunito font-bold mb-2 text-pink-500">{award.title}</h3>
+            <p className="text-gray-600 font-medium">{award.desc}</p>
           </motion.div>
         ))}
       </motion.div>
