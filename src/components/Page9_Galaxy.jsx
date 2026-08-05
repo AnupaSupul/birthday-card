@@ -9,6 +9,42 @@ import ErrorBoundary from './ErrorBoundary';
 // Shared texture loader (reused across all PhotoNodes — avoids creating new instances)
 const sharedTextureLoader = new THREE.TextureLoader();
 
+// Dynamically detect new images in the page9-galaxy folder at dev/build time
+const rawGalaxyPhotos = import.meta.glob('/public/photos/originals/page9-galaxy/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}', { eager: true, query: '?url' });
+
+const getCombinedPhotos = () => {
+  const existingPhotos = [...allPhotosData];
+  const existingOriginalPaths = new Set(existingPhotos.map(p => p.original));
+  const newPhotos = [];
+  let nextId = existingPhotos.length > 0 ? Math.max(...existingPhotos.map(p => p.id)) + 1 : 1;
+
+  for (const path in rawGalaxyPhotos) {
+    // path is like "/public/photos/originals/page9-galaxy/img.jpg"
+    // allPhotosData original paths are like "/photos/originals/page9-galaxy/img.jpg"
+    const relativePath = path.replace('/public', '');
+    
+    if (!existingOriginalPaths.has(relativePath)) {
+      // This is a newly added photo that isn't in the manifest yet
+      // The resolved URL from Vite is in the default export when using query: '?url'
+      const resolvedUrl = rawGalaxyPhotos[path].default || rawGalaxyPhotos[path];
+      
+      newPhotos.push({
+        id: nextId++,
+        original: relativePath,
+        // Since it's not optimized yet, fallback to the raw URL for both
+        optimized: resolvedUrl,
+        thumbnail: resolvedUrl,
+        caption: "A new memory ✨",
+        page: "page9-galaxy"
+      });
+    }
+  }
+  
+  return [...existingPhotos, ...newPhotos];
+};
+
+const finalGalaxyPhotosList = getCombinedPhotos();
+
 // Generate galaxy photo positions dynamically from the manifest
 // GALAXY_COUNT grows automatically as you add more photos
 function generateGalaxyPositions(photos) {
@@ -138,8 +174,8 @@ export default function Page9_Galaxy() {
   const [showCanvas, setShowCanvas] = useState(false);
   const sectionRef = useRef(null);
 
-  // Generate positions once from the full manifest (memoized)
-  const galaxyPhotos = useMemo(() => generateGalaxyPositions(allPhotosData), []);
+  // Generate positions once from the full combined list (memoized)
+  const galaxyPhotos = useMemo(() => generateGalaxyPositions(finalGalaxyPhotosList), []);
 
   // Lazy-load: only mount the Canvas when entering fullscreen for the first time
   // This prevents Three.js from initializing until the user wants it
