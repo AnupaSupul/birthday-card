@@ -3,6 +3,10 @@ import Lenis from 'lenis';
 import ErrorBoundary from './components/ErrorBoundary';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// Dynamically detect any audio file placed in public/audio
+const audioFiles = import.meta.glob('/public/audio/*.{mp3,wav,ogg,m4a}', { eager: true, query: '?url' });
+
+
 import Page1_Loading from './components/Page1_Loading';
 import Page2_Welcome from './components/Page2_Welcome';
 import Page3_PhotoIntro from './components/Page3_PhotoIntro';
@@ -128,10 +132,16 @@ function App() {
 
   // Create the Audio object once on mount
   useEffect(() => {
-    const audio = new Audio('/audio/bgm.mp3');
+    let audioSrc = '/audio/bgm.mp3'; // Fallback
+    const keys = Object.keys(audioFiles);
+    if (keys.length > 0) {
+      audioSrc = audioFiles[keys[0]].default || audioFiles[keys[0]];
+    }
+
+    const audio = new Audio(audioSrc);
     audio.loop = true;
     audio.volume = 0.3;
-    audio.preload = 'auto';
+    audio.preload = 'metadata';
     audioRef.current = audio;
 
     return () => {
@@ -165,22 +175,35 @@ function App() {
   }, []);
 
   // First interaction: start music once, never again
-  const handleFirstInteraction = useCallback(async () => {
-    if (hasInteractedRef.current) return;
-    hasInteractedRef.current = true;
+  useEffect(() => {
+    const handleInteraction = async () => {
+      if (hasInteractedRef.current) return;
+      hasInteractedRef.current = true;
 
-    if (audioRef.current) {
-      try {
-        await audioRef.current.play();
-        setIsPlaying(true);
-      } catch (e) {
-        console.log("Audio autoplay blocked by browser — user can use the music player.");
+      // Clean up event listeners immediately
+      const events = ['click', 'scroll', 'touchstart', 'keydown'];
+      events.forEach(evt => window.removeEventListener(evt, handleInteraction, { capture: true }));
+
+      if (audioRef.current) {
+        try {
+          await audioRef.current.play();
+          setIsPlaying(true);
+        } catch (e) {
+          // Silently wait for another interaction or manual play if blocked
+        }
       }
-    }
+    };
+
+    const events = ['click', 'scroll', 'touchstart', 'keydown'];
+    events.forEach(evt => window.addEventListener(evt, handleInteraction, { once: true, capture: true }));
+
+    return () => {
+      events.forEach(evt => window.removeEventListener(evt, handleInteraction, { capture: true }));
+    };
   }, []);
 
   return (
-    <div className="relative w-full bg-[#fff0f5] min-h-screen text-[#4a4a4a] overflow-hidden font-nunito" onClick={handleFirstInteraction}>
+    <div className="relative w-full bg-[#fff0f5] min-h-screen text-[#4a4a4a] overflow-hidden font-nunito">
 
       {/* Global Pastel Background Elements */}
       <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
