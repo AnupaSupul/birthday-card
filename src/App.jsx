@@ -3,8 +3,8 @@ import Lenis from 'lenis';
 import ErrorBoundary from './components/ErrorBoundary';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Dynamically detect any audio file placed in public/audio
-const audioFiles = import.meta.glob('/public/audio/*.{mp3,wav,ogg,m4a}', { eager: true, query: '?url' });
+// Dynamically detect any audio file placed in public/audio (just mapping the filenames to avoid Vite warnings)
+const audioFiles = import.meta.glob('/public/audio/*.{mp3,wav,ogg,m4a}');
 
 
 import Page1_Loading from './components/Page1_Loading';
@@ -135,7 +135,8 @@ function App() {
     let audioSrc = '/audio/bgm.mp3'; // Fallback
     const keys = Object.keys(audioFiles);
     if (keys.length > 0) {
-      audioSrc = audioFiles[keys[0]].default || audioFiles[keys[0]];
+      // Map "/public/audio/file.mp3" to "/audio/file.mp3" to avoid Vite root warnings
+      audioSrc = keys[0].replace('/public', '');
     }
 
     const audio = new Audio(audioSrc);
@@ -181,20 +182,38 @@ function App() {
       hasInteractedRef.current = true;
 
       // Clean up event listeners immediately
-      const events = ['click', 'scroll', 'touchstart', 'keydown'];
+      const events = ['click', 'pointerdown', 'touchstart', 'wheel', 'keydown', 'scroll'];
       events.forEach(evt => window.removeEventListener(evt, handleInteraction, { capture: true }));
 
       if (audioRef.current) {
         try {
+          audioRef.current.volume = 0; // Start at 0 for fade in
           await audioRef.current.play();
           setIsPlaying(true);
+          
+          // Smooth fade in over 2 seconds to the target default volume (0.3)
+          const targetVolume = 0.3;
+          const fadeDuration = 2000; // ms
+          const intervalMs = 100;
+          const volStep = targetVolume / (fadeDuration / intervalMs);
+          
+          let currentVol = 0;
+          const fadeInterval = setInterval(() => {
+            currentVol = Math.min(targetVolume, currentVol + volStep);
+            if (audioRef.current) {
+              audioRef.current.volume = currentVol;
+            }
+            if (currentVol >= targetVolume) {
+              clearInterval(fadeInterval);
+            }
+          }, intervalMs);
         } catch (e) {
           // Silently wait for another interaction or manual play if blocked
         }
       }
     };
 
-    const events = ['click', 'scroll', 'touchstart', 'keydown'];
+    const events = ['click', 'pointerdown', 'touchstart', 'wheel', 'keydown', 'scroll'];
     events.forEach(evt => window.addEventListener(evt, handleInteraction, { once: true, capture: true }));
 
     return () => {
