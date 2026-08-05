@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "filename": "buni5",
+    "original": "/photos/originals/page10-scrapbook/buni5.jpeg",
+    "optimized": "/photos/optimized/page10-scrapbook/buni5.webp",
+    "thumbnail": "/photos/thumbnails/page10-scrapbook/buni5.webp",
+    "caption": "Remember this day? 🥹",
+    "page": "page10-scrapbook"
+  },
+  {
+    "id": 2,
+    "filename": "buni6",
+    "original": "/photos/originals/page10-scrapbook/buni6.jpeg",
+    "optimized": "/photos/optimized/page10-scrapbook/buni6.webp",
+    "thumbnail": "/photos/thumbnails/page10-scrapbook/buni6.webp",
+    "caption": "We look so chaotic here lol",
+    "page": "page10-scrapbook"
+  },
+  {
+    "id": 3,
+    "filename": "muslimbuni1",
+    "original": "/photos/originals/page10-scrapbook/muslimbuni1.jpg",
+    "optimized": "/photos/optimized/page10-scrapbook/muslimbuni1.webp",
+    "thumbnail": "/photos/thumbnails/page10-scrapbook/muslimbuni1.webp",
+    "caption": "Best day ever! ☀️",
+    "page": "page10-scrapbook"
+  },
+  {
+    "id": 4,
+    "filename": "muslimbuni2",
+    "original": "/photos/originals/page10-scrapbook/muslimbuni2.jpeg",
+    "optimized": "/photos/optimized/page10-scrapbook/muslimbuni2.webp",
+    "thumbnail": "/photos/thumbnails/page10-scrapbook/muslimbuni2.webp",
+    "caption": "Take me back! ✈️",
+    "page": "page10-scrapbook"
+  },
+  {
+    "id": 5,
+    "filename": "oldbuni1",
+    "original": "/photos/originals/page10-scrapbook/oldbuni1.jpeg",
+    "optimized": "/photos/optimized/page10-scrapbook/oldbuni1.webp",
+    "thumbnail": "/photos/thumbnails/page10-scrapbook/oldbuni1.webp",
+    "caption": "So much fun together!",
+    "page": "page10-scrapbook"
+  },
+  {
+    "id": 6,
+    "filename": "oldbuni2",
+    "original": "/photos/originals/page10-scrapbook/oldbuni2.png",
+    "optimized": "/photos/optimized/page10-scrapbook/oldbuni2.webp",
+    "thumbnail": "/photos/thumbnails/page10-scrapbook/oldbuni2.webp",
+    "caption": "This was legendary 🎉",
+    "page": "page10-scrapbook"
+  },
+  {
+    "id": 7,
+    "filename": "saribuni1",
+    "original": "/photos/originals/page10-scrapbook/saribuni1.jpeg",
+    "optimized": "/photos/optimized/page10-scrapbook/saribuni1.webp",
+    "thumbnail": "/photos/thumbnails/page10-scrapbook/saribuni1.webp",
+    "caption": "Our matching outfits though 😂",
+    "page": "page10-scrapbook"
+  },
+  {
+    "id": 8,
+    "filename": "saribuni4",
+    "original": "/photos/originals/page10-scrapbook/saribuni4.jpg",
+    "optimized": "/photos/optimized/page10-scrapbook/saribuni4.webp",
+    "thumbnail": "/photos/thumbnails/page10-scrapbook/saribuni4.webp",
+    "caption": "Peak friendship energy 💖",
+    "page": "page10-scrapbook"
+  }
+]

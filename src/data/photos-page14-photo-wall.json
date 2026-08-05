@@ -1,0 +1,47 @@
+[
+  {
+    "id": 9,
+    "filename": "buni9",
+    "original": "/photos/originals/page14-photo-wall/buni9.jpg",
+    "optimized": "/photos/optimized/page14-photo-wall/buni9.webp",
+    "thumbnail": "/photos/thumbnails/page14-photo-wall/buni9.webp",
+    "caption": "Wall of fame material 🏆",
+    "page": "page14-photo-wall"
+  },
+  {
+    "id": 10,
+    "filename": "gaumbuni1",
+    "original": "/photos/originals/page14-photo-wall/gaumbuni1.jpeg",
+    "optimized": "/photos/optimized/page14-photo-wall/gaumbuni1.webp",
+    "thumbnail": "/photos/thumbnails/page14-photo-wall/gaumbuni1.webp",
+    "caption": "This belongs in a museum!",
+    "page": "page14-photo-wall"
+  },
+  {
+    "id": 11,
+    "filename": "hakka",
+    "original": "/photos/originals/page14-photo-wall/hakka.jpg",
+    "optimized": "/photos/optimized/page14-photo-wall/hakka.webp",
+    "thumbnail": "/photos/thumbnails/page14-photo-wall/hakka.webp",
+    "caption": "Chef's kiss photo 🤌",
+    "page": "page14-photo-wall"
+  },
+  {
+    "id": 12,
+    "filename": "whatsapp-image-2026-08-04-at-23-43-29",
+    "original": "/photos/originals/page14-photo-wall/WhatsApp Image 2026-08-04 at 23.43.29.jpeg",
+    "optimized": "/photos/optimized/page14-photo-wall/whatsapp-image-2026-08-04-at-23-43-29.webp",
+    "thumbnail": "/photos/thumbnails/page14-photo-wall/whatsapp-image-2026-08-04-at-23-43-29.webp",
+    "caption": "We were so cute here!",
+    "page": "page14-photo-wall"
+  },
+  {
+    "id": 13,
+    "filename": "whatsapp-image-2026-08-04-at-23-43-44",
+    "original": "/photos/originals/page14-photo-wall/WhatsApp Image 2026-08-04 at 23.43.44.jpeg",
+    "optimized": "/photos/optimized/page14-photo-wall/whatsapp-image-2026-08-04-at-23-43-44.webp",
+    "thumbnail": "/photos/thumbnails/page14-photo-wall/whatsapp-image-2026-08-04-at-23-43-44.webp",
+    "caption": "Iconic. Simply iconic.",
+    "page": "page14-photo-wall"
+  }
+]

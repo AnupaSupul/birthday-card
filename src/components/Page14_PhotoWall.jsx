@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import photosData from '../data/photos.json';
+import wallPhotosData from '../data/photos-page14-photo-wall.json';
 
 export default function Page14_PhotoWall() {
   const [selected, setSelected] = useState(null);
   
-  // Use first 5 photos for the wall
-  const wallPhotos = photosData.slice(0, 5);
+  // Use all photo-wall photos
+  const wallPhotos = wallPhotosData;
 
   return (
     <section className="min-h-screen relative py-20 bg-transparent overflow-hidden">
@@ -45,7 +45,7 @@ export default function Page14_PhotoWall() {
               whileHover={{ scale: 1.05, zIndex: 30 }}
               className="polaroid-frame w-40 md:w-56"
             >
-              <img src={photo.url} alt="Memory" className="w-full h-40 md:h-56 object-cover bg-gray-100 pointer-events-none" onError={(e) => { e.target.style.background = 'linear-gradient(135deg, #f472b6, #a855f7)'; e.target.src = ''; }} />
+              <img src={photo.thumbnail} alt="Memory" className="w-full h-40 md:h-56 object-cover bg-gray-100 pointer-events-none" loading="lazy" onError={(e) => { e.target.style.background = 'linear-gradient(135deg, #f472b6, #a855f7)'; e.target.src = ''; }} />
             </motion.div>
           </div>
         ))}
@@ -83,7 +83,7 @@ export default function Page14_PhotoWall() {
               className="polaroid-frame max-w-xl w-full"
             >
               <div className="cute-tape"></div>
-              <img src={selected.url} alt="Enlarged memory" className="w-full max-h-[70vh] object-contain rounded" onError={(e) => { e.target.style.background = 'linear-gradient(135deg, #f472b6, #a855f7)'; e.target.style.minHeight = '200px'; e.target.src = ''; }} />
+              <img src={selected.optimized} alt="Enlarged memory" className="w-full max-h-[70vh] object-contain rounded" loading="lazy" onError={(e) => { e.target.style.background = 'linear-gradient(135deg, #f472b6, #a855f7)'; e.target.style.minHeight = '200px'; e.target.src = ''; }} />
               <p className="mt-6 text-center font-pacifico text-3xl text-gray-700 font-medium px-4">
                 {selected.caption}
               </p>

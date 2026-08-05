@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import photosData from '../data/photos.json';
+import scrapbookPhotos from '../data/photos-page10-scrapbook.json';
 
 const stickers = ["🌸", "⭐", "💖", "✨", "🎀", "🦋"];
 const notes = [
@@ -12,10 +12,10 @@ const notes = [
 
 // Generate scrapbook pages grouping 2 photos per page
 const pages = [];
-for (let i = 0; i < 4; i++) {
+for (let i = 0; i < Math.min(4, Math.ceil(scrapbookPhotos.length / 2)); i++) {
   pages.push({
     id: i,
-    photos: [photosData[i*2 % photosData.length], photosData[(i*2 + 1) % photosData.length]],
+    photos: [scrapbookPhotos[i*2 % scrapbookPhotos.length], scrapbookPhotos[(i*2 + 1) % scrapbookPhotos.length]],
     note: notes[i % notes.length],
     sticker1: stickers[Math.floor(Math.random() * stickers.length)],
     sticker2: stickers[Math.floor(Math.random() * stickers.length)],
@@ -63,7 +63,7 @@ export default function Page10_Scrapbook() {
                     <div key={idx} className={`relative p-3 bg-white shadow-lg ${idx % 2 === 0 ? 'rotate-3' : '-rotate-6'} hover:rotate-0 transition-transform`}>
                       {/* Tape */}
                       <div className="cute-tape"></div>
-                      <img src={photo.url} alt="Scrapbook memory" className="w-48 h-48 md:w-64 md:h-64 object-cover sepia-[0.2]" onError={(e) => { e.target.style.background = 'linear-gradient(135deg, #f472b6, #a855f7)'; e.target.src = ''; }} />
+                      <img src={photo.optimized} alt="Scrapbook memory" className="w-48 h-48 md:w-64 md:h-64 object-cover sepia-[0.2]" loading="lazy" onError={(e) => { e.target.style.background = 'linear-gradient(135deg, #f472b6, #a855f7)'; e.target.src = ''; }} />
                     </div>
                   ))}
                 </div>

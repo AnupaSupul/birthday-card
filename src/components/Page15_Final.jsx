@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import photosData from '../data/photos.json';
+import finalPhotos from '../data/photos-page15-final.json';
 
 export default function Page15_Final() {
   const ref = useRef(null);
@@ -91,7 +91,7 @@ export default function Page15_Final() {
             transition={{ duration: 1 }}
             className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-pink-300 shadow-[0_0_50px_rgba(255,182,193,0.5)] z-10 relative bg-gray-100"
           >
-            <img src={photosData[0].url} alt="Queen" className="w-full h-full object-cover" onError={(e) => { e.target.style.background = 'linear-gradient(135deg, #f472b6, #a855f7, #60a5fa)'; e.target.src = ''; }} />
+            <img src={finalPhotos[0]?.optimized || ''} alt="Queen" className="w-full h-full object-cover" loading="lazy" onError={(e) => { e.target.style.background = 'linear-gradient(135deg, #f472b6, #a855f7, #60a5fa)'; e.target.src = ''; }} />
           </motion.div>
         </div>
 

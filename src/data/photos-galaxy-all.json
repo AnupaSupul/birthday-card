@@ -1,0 +1,362 @@
+[
+  {
+    "id": 1,
+    "filename": "buni5",
+    "original": "/photos/originals/page10-scrapbook/buni5.jpeg",
+    "optimized": "/photos/optimized/page10-scrapbook/buni5.webp",
+    "thumbnail": "/photos/thumbnails/page10-scrapbook/buni5.webp",
+    "caption": "Remember this day? 🥹",
+    "page": "page10-scrapbook"
+  },
+  {
+    "id": 2,
+    "filename": "buni6",
+    "original": "/photos/originals/page10-scrapbook/buni6.jpeg",
+    "optimized": "/photos/optimized/page10-scrapbook/buni6.webp",
+    "thumbnail": "/photos/thumbnails/page10-scrapbook/buni6.webp",
+    "caption": "We look so chaotic here lol",
+    "page": "page10-scrapbook"
+  },
+  {
+    "id": 3,
+    "filename": "muslimbuni1",
+    "original": "/photos/originals/page10-scrapbook/muslimbuni1.jpg",
+    "optimized": "/photos/optimized/page10-scrapbook/muslimbuni1.webp",
+    "thumbnail": "/photos/thumbnails/page10-scrapbook/muslimbuni1.webp",
+    "caption": "Best day ever! ☀️",
+    "page": "page10-scrapbook"
+  },
+  {
+    "id": 4,
+    "filename": "muslimbuni2",
+    "original": "/photos/originals/page10-scrapbook/muslimbuni2.jpeg",
+    "optimized": "/photos/optimized/page10-scrapbook/muslimbuni2.webp",
+    "thumbnail": "/photos/thumbnails/page10-scrapbook/muslimbuni2.webp",
+    "caption": "Take me back! ✈️",
+    "page": "page10-scrapbook"
+  },
+  {
+    "id": 5,
+    "filename": "oldbuni1",
+    "original": "/photos/originals/page10-scrapbook/oldbuni1.jpeg",
+    "optimized": "/photos/optimized/page10-scrapbook/oldbuni1.webp",
+    "thumbnail": "/photos/thumbnails/page10-scrapbook/oldbuni1.webp",
+    "caption": "So much fun together!",
+    "page": "page10-scrapbook"
+  },
+  {
+    "id": 6,
+    "filename": "oldbuni2",
+    "original": "/photos/originals/page10-scrapbook/oldbuni2.png",
+    "optimized": "/photos/optimized/page10-scrapbook/oldbuni2.webp",
+    "thumbnail": "/photos/thumbnails/page10-scrapbook/oldbuni2.webp",
+    "caption": "This was legendary 🎉",
+    "page": "page10-scrapbook"
+  },
+  {
+    "id": 7,
+    "filename": "saribuni1",
+    "original": "/photos/originals/page10-scrapbook/saribuni1.jpeg",
+    "optimized": "/photos/optimized/page10-scrapbook/saribuni1.webp",
+    "thumbnail": "/photos/thumbnails/page10-scrapbook/saribuni1.webp",
+    "caption": "Our matching outfits though 😂",
+    "page": "page10-scrapbook"
+  },
+  {
+    "id": 8,
+    "filename": "saribuni4",
+    "original": "/photos/originals/page10-scrapbook/saribuni4.jpg",
+    "optimized": "/photos/optimized/page10-scrapbook/saribuni4.webp",
+    "thumbnail": "/photos/thumbnails/page10-scrapbook/saribuni4.webp",
+    "caption": "Peak friendship energy 💖",
+    "page": "page10-scrapbook"
+  },
+  {
+    "id": 9,
+    "filename": "buni9",
+    "original": "/photos/originals/page14-photo-wall/buni9.jpg",
+    "optimized": "/photos/optimized/page14-photo-wall/buni9.webp",
+    "thumbnail": "/photos/thumbnails/page14-photo-wall/buni9.webp",
+    "caption": "Wall of fame material 🏆",
+    "page": "page14-photo-wall"
+  },
+  {
+    "id": 10,
+    "filename": "gaumbuni1",
+    "original": "/photos/originals/page14-photo-wall/gaumbuni1.jpeg",
+    "optimized": "/photos/optimized/page14-photo-wall/gaumbuni1.webp",
+    "thumbnail": "/photos/thumbnails/page14-photo-wall/gaumbuni1.webp",
+    "caption": "This belongs in a museum!",
+    "page": "page14-photo-wall"
+  },
+  {
+    "id": 11,
+    "filename": "hakka",
+    "original": "/photos/originals/page14-photo-wall/hakka.jpg",
+    "optimized": "/photos/optimized/page14-photo-wall/hakka.webp",
+    "thumbnail": "/photos/thumbnails/page14-photo-wall/hakka.webp",
+    "caption": "Chef's kiss photo 🤌",
+    "page": "page14-photo-wall"
+  },
+  {
+    "id": 12,
+    "filename": "whatsapp-image-2026-08-04-at-23-43-29",
+    "original": "/photos/originals/page14-photo-wall/WhatsApp Image 2026-08-04 at 23.43.29.jpeg",
+    "optimized": "/photos/optimized/page14-photo-wall/whatsapp-image-2026-08-04-at-23-43-29.webp",
+    "thumbnail": "/photos/thumbnails/page14-photo-wall/whatsapp-image-2026-08-04-at-23-43-29.webp",
+    "caption": "We were so cute here!",
+    "page": "page14-photo-wall"
+  },
+  {
+    "id": 13,
+    "filename": "whatsapp-image-2026-08-04-at-23-43-44",
+    "original": "/photos/originals/page14-photo-wall/WhatsApp Image 2026-08-04 at 23.43.44.jpeg",
+    "optimized": "/photos/optimized/page14-photo-wall/whatsapp-image-2026-08-04-at-23-43-44.webp",
+    "thumbnail": "/photos/thumbnails/page14-photo-wall/whatsapp-image-2026-08-04-at-23-43-44.webp",
+    "caption": "Iconic. Simply iconic.",
+    "page": "page14-photo-wall"
+  },
+  {
+    "id": 14,
+    "filename": "gourges",
+    "original": "/photos/originals/page15-final/gourges.jpeg",
+    "optimized": "/photos/optimized/page15-final/gourges.webp",
+    "thumbnail": "/photos/thumbnails/page15-final/gourges.webp",
+    "caption": "The best is yet to come 💖",
+    "page": "page15-final"
+  },
+  {
+    "id": 15,
+    "filename": "whatsapp-image-2025-06-22-at-18-03-15-3bc16651",
+    "original": "/photos/originals/page3-photo-intro/WhatsApp Image 2025-06-22 at 18.03.15_3bc16651.jpg",
+    "optimized": "/photos/optimized/page3-photo-intro/whatsapp-image-2025-06-22-at-18-03-15-3bc16651.webp",
+    "thumbnail": "/photos/thumbnails/page3-photo-intro/whatsapp-image-2025-06-22-at-18-03-15-3bc16651.webp",
+    "caption": "One of my favorite memories 😂",
+    "page": "page3-photo-intro"
+  },
+  {
+    "id": 16,
+    "filename": "whatsapp-image-2026-08-04-at-23-35-24",
+    "original": "/photos/originals/page3-photo-intro/WhatsApp Image 2026-08-04 at 23.35.24.jpeg",
+    "optimized": "/photos/optimized/page3-photo-intro/whatsapp-image-2026-08-04-at-23-35-24.webp",
+    "thumbnail": "/photos/thumbnails/page3-photo-intro/whatsapp-image-2026-08-04-at-23-35-24.webp",
+    "caption": "Still can't believe this happened!",
+    "page": "page3-photo-intro"
+  },
+  {
+    "id": 17,
+    "filename": "whatsapp-image-2026-08-04-at-23-42-46",
+    "original": "/photos/originals/page3-photo-intro/WhatsApp Image 2026-08-04 at 23.42.46.jpeg",
+    "optimized": "/photos/optimized/page3-photo-intro/whatsapp-image-2026-08-04-at-23-42-46.webp",
+    "thumbnail": "/photos/thumbnails/page3-photo-intro/whatsapp-image-2026-08-04-at-23-42-46.webp",
+    "caption": "This picture deserved to be framed.",
+    "page": "page3-photo-intro"
+  },
+  {
+    "id": 18,
+    "filename": "whatsapp-image-2026-08-04-at-23-43-20",
+    "original": "/photos/originals/page3-photo-intro/WhatsApp Image 2026-08-04 at 23.43.20.jpeg",
+    "optimized": "/photos/optimized/page3-photo-intro/whatsapp-image-2026-08-04-at-23-43-20.webp",
+    "thumbnail": "/photos/thumbnails/page3-photo-intro/whatsapp-image-2026-08-04-at-23-43-20.webp",
+    "caption": "You somehow look good in every photo.",
+    "page": "page3-photo-intro"
+  },
+  {
+    "id": 19,
+    "filename": "outs",
+    "original": "/photos/originals/page9-galaxy/outs.png",
+    "optimized": "/photos/optimized/page9-galaxy/outs.webp",
+    "thumbnail": "/photos/thumbnails/page9-galaxy/outs.webp",
+    "caption": "Floating in our memories ✨",
+    "page": "page9-galaxy"
+  },
+  {
+    "id": 20,
+    "filename": "screenshot-2025-05-05-162118",
+    "original": "/photos/originals/page9-galaxy/Screenshot 2025-05-05 162118.png",
+    "optimized": "/photos/optimized/page9-galaxy/screenshot-2025-05-05-162118.webp",
+    "thumbnail": "/photos/thumbnails/page9-galaxy/screenshot-2025-05-05-162118.webp",
+    "caption": "Another adventure together!",
+    "page": "page9-galaxy"
+  },
+  {
+    "id": 21,
+    "filename": "screenshot-2025-05-08-211033",
+    "original": "/photos/originals/page9-galaxy/Screenshot 2025-05-08 211033.png",
+    "optimized": "/photos/optimized/page9-galaxy/screenshot-2025-05-08-211033.webp",
+    "thumbnail": "/photos/thumbnails/page9-galaxy/screenshot-2025-05-08-211033.webp",
+    "caption": "We were so happy here 🥹",
+    "page": "page9-galaxy"
+  },
+  {
+    "id": 22,
+    "filename": "whatsapp-image-2025-06-22-at-17-52-47-0fa1a93d",
+    "original": "/photos/originals/page9-galaxy/WhatsApp Image 2025-06-22 at 17.52.47_0fa1a93d.jpg",
+    "optimized": "/photos/optimized/page9-galaxy/whatsapp-image-2025-06-22-at-17-52-47-0fa1a93d.webp",
+    "thumbnail": "/photos/thumbnails/page9-galaxy/whatsapp-image-2025-06-22-at-17-52-47-0fa1a93d.webp",
+    "caption": "This is what friendship looks like.",
+    "page": "page9-galaxy"
+  },
+  {
+    "id": 23,
+    "filename": "whatsapp-image-2025-06-22-at-17-52-47-a0403413",
+    "original": "/photos/originals/page9-galaxy/WhatsApp Image 2025-06-22 at 17.52.47_a0403413.jpg",
+    "optimized": "/photos/optimized/page9-galaxy/whatsapp-image-2025-06-22-at-17-52-47-a0403413.webp",
+    "thumbnail": "/photos/thumbnails/page9-galaxy/whatsapp-image-2025-06-22-at-17-52-47-a0403413.webp",
+    "caption": "Can't stop smiling looking at this.",
+    "page": "page9-galaxy"
+  },
+  {
+    "id": 24,
+    "filename": "whatsapp-image-2025-06-22-at-17-52-47-a5a219a3",
+    "original": "/photos/originals/page9-galaxy/WhatsApp Image 2025-06-22 at 17.52.47_a5a219a3.jpg",
+    "optimized": "/photos/optimized/page9-galaxy/whatsapp-image-2025-06-22-at-17-52-47-a5a219a3.webp",
+    "thumbnail": "/photos/thumbnails/page9-galaxy/whatsapp-image-2025-06-22-at-17-52-47-a5a219a3.webp",
+    "caption": "Best day ever!",
+    "page": "page9-galaxy"
+  },
+  {
+    "id": 25,
+    "filename": "whatsapp-image-2025-06-22-at-17-52-52-4a785b7e",
+    "original": "/photos/originals/page9-galaxy/WhatsApp Image 2025-06-22 at 17.52.52_4a785b7e.jpg",
+    "optimized": "/photos/optimized/page9-galaxy/whatsapp-image-2025-06-22-at-17-52-52-4a785b7e.webp",
+    "thumbnail": "/photos/thumbnails/page9-galaxy/whatsapp-image-2025-06-22-at-17-52-52-4a785b7e.webp",
+    "caption": "Take me back here! ✈️",
+    "page": "page9-galaxy"
+  },
+  {
+    "id": 26,
+    "filename": "whatsapp-image-2025-06-22-at-18-09-35-8243a256",
+    "original": "/photos/originals/page9-galaxy/WhatsApp Image 2025-06-22 at 18.09.35_8243a256.jpg",
+    "optimized": "/photos/optimized/page9-galaxy/whatsapp-image-2025-06-22-at-18-09-35-8243a256.webp",
+    "thumbnail": "/photos/thumbnails/page9-galaxy/whatsapp-image-2025-06-22-at-18-09-35-8243a256.webp",
+    "caption": "Laughing at nothing, as usual 😂",
+    "page": "page9-galaxy"
+  },
+  {
+    "id": 27,
+    "filename": "whatsapp-image-2025-06-22-at-18-12-17-6e2a261a",
+    "original": "/photos/originals/page9-galaxy/WhatsApp Image 2025-06-22 at 18.12.17_6e2a261a.jpg",
+    "optimized": "/photos/optimized/page9-galaxy/whatsapp-image-2025-06-22-at-18-12-17-6e2a261a.webp",
+    "thumbnail": "/photos/thumbnails/page9-galaxy/whatsapp-image-2025-06-22-at-18-12-17-6e2a261a.webp",
+    "caption": "We need to recreate this photo.",
+    "page": "page9-galaxy"
+  },
+  {
+    "id": 28,
+    "filename": "whatsapp-image-2026-08-04-at-23-35-30-1",
+    "original": "/photos/originals/page9-galaxy/WhatsApp Image 2026-08-04 at 23.35.30 (1).jpeg",
+    "optimized": "/photos/optimized/page9-galaxy/whatsapp-image-2026-08-04-at-23-35-30-1.webp",
+    "thumbnail": "/photos/thumbnails/page9-galaxy/whatsapp-image-2026-08-04-at-23-35-30-1.webp",
+    "caption": "Unforgettable moment 🌸",
+    "page": "page9-galaxy"
+  },
+  {
+    "id": 29,
+    "filename": "whatsapp-image-2026-08-04-at-23-35-30-4",
+    "original": "/photos/originals/page9-galaxy/WhatsApp Image 2026-08-04 at 23.35.30 (4).jpeg",
+    "optimized": "/photos/optimized/page9-galaxy/whatsapp-image-2026-08-04-at-23-35-30-4.webp",
+    "thumbnail": "/photos/thumbnails/page9-galaxy/whatsapp-image-2026-08-04-at-23-35-30-4.webp",
+    "caption": "Floating in our memories ✨",
+    "page": "page9-galaxy"
+  },
+  {
+    "id": 30,
+    "filename": "whatsapp-image-2026-08-04-at-23-35-30-8",
+    "original": "/photos/originals/page9-galaxy/WhatsApp Image 2026-08-04 at 23.35.30 (8).jpeg",
+    "optimized": "/photos/optimized/page9-galaxy/whatsapp-image-2026-08-04-at-23-35-30-8.webp",
+    "thumbnail": "/photos/thumbnails/page9-galaxy/whatsapp-image-2026-08-04-at-23-35-30-8.webp",
+    "caption": "Another adventure together!",
+    "page": "page9-galaxy"
+  },
+  {
+    "id": 31,
+    "filename": "whatsapp-image-2026-08-04-at-23-42-14",
+    "original": "/photos/originals/page9-galaxy/WhatsApp Image 2026-08-04 at 23.42.14.jpeg",
+    "optimized": "/photos/optimized/page9-galaxy/whatsapp-image-2026-08-04-at-23-42-14.webp",
+    "thumbnail": "/photos/thumbnails/page9-galaxy/whatsapp-image-2026-08-04-at-23-42-14.webp",
+    "caption": "We were so happy here 🥹",
+    "page": "page9-galaxy"
+  },
+  {
+    "id": 32,
+    "filename": "whatsapp-image-2026-08-04-at-23-42-49",
+    "original": "/photos/originals/page9-galaxy/WhatsApp Image 2026-08-04 at 23.42.49.jpeg",
+    "optimized": "/photos/optimized/page9-galaxy/whatsapp-image-2026-08-04-at-23-42-49.webp",
+    "thumbnail": "/photos/thumbnails/page9-galaxy/whatsapp-image-2026-08-04-at-23-42-49.webp",
+    "caption": "This is what friendship looks like.",
+    "page": "page9-galaxy"
+  },
+  {
+    "id": 33,
+    "filename": "whatsapp-image-2026-08-04-at-23-42-51",
+    "original": "/photos/originals/page9-galaxy/WhatsApp Image 2026-08-04 at 23.42.51.jpeg",
+    "optimized": "/photos/optimized/page9-galaxy/whatsapp-image-2026-08-04-at-23-42-51.webp",
+    "thumbnail": "/photos/thumbnails/page9-galaxy/whatsapp-image-2026-08-04-at-23-42-51.webp",
+    "caption": "Can't stop smiling looking at this.",
+    "page": "page9-galaxy"
+  },
+  {
+    "id": 34,
+    "filename": "whatsapp-image-2026-08-04-at-23-43-30",
+    "original": "/photos/originals/page9-galaxy/WhatsApp Image 2026-08-04 at 23.43.30.jpeg",
+    "optimized": "/photos/optimized/page9-galaxy/whatsapp-image-2026-08-04-at-23-43-30.webp",
+    "thumbnail": "/photos/thumbnails/page9-galaxy/whatsapp-image-2026-08-04-at-23-43-30.webp",
+    "caption": "Best day ever!",
+    "page": "page9-galaxy"
+  },
+  {
+    "id": 35,
+    "filename": "whatsapp-image-2026-08-04-at-23-43-34",
+    "original": "/photos/originals/page9-galaxy/WhatsApp Image 2026-08-04 at 23.43.34.jpeg",
+    "optimized": "/photos/optimized/page9-galaxy/whatsapp-image-2026-08-04-at-23-43-34.webp",
+    "thumbnail": "/photos/thumbnails/page9-galaxy/whatsapp-image-2026-08-04-at-23-43-34.webp",
+    "caption": "Take me back here! ✈️",
+    "page": "page9-galaxy"
+  },
+  {
+    "id": 36,
+    "filename": "whatsapp-image-2026-08-04-at-23-43-39",
+    "original": "/photos/originals/page9-galaxy/WhatsApp Image 2026-08-04 at 23.43.39.jpeg",
+    "optimized": "/photos/optimized/page9-galaxy/whatsapp-image-2026-08-04-at-23-43-39.webp",
+    "thumbnail": "/photos/thumbnails/page9-galaxy/whatsapp-image-2026-08-04-at-23-43-39.webp",
+    "caption": "Laughing at nothing, as usual 😂",
+    "page": "page9-galaxy"
+  },
+  {
+    "id": 37,
+    "filename": "whatsapp-image-2026-08-04-at-23-43-40",
+    "original": "/photos/originals/page9-galaxy/WhatsApp Image 2026-08-04 at 23.43.40.jpeg",
+    "optimized": "/photos/optimized/page9-galaxy/whatsapp-image-2026-08-04-at-23-43-40.webp",
+    "thumbnail": "/photos/thumbnails/page9-galaxy/whatsapp-image-2026-08-04-at-23-43-40.webp",
+    "caption": "We need to recreate this photo.",
+    "page": "page9-galaxy"
+  },
+  {
+    "id": 38,
+    "filename": "whatsapp-image-2026-08-04-at-23-43-42",
+    "original": "/photos/originals/page9-galaxy/WhatsApp Image 2026-08-04 at 23.43.42.jpeg",
+    "optimized": "/photos/optimized/page9-galaxy/whatsapp-image-2026-08-04-at-23-43-42.webp",
+    "thumbnail": "/photos/thumbnails/page9-galaxy/whatsapp-image-2026-08-04-at-23-43-42.webp",
+    "caption": "Unforgettable moment 🌸",
+    "page": "page9-galaxy"
+  },
+  {
+    "id": 39,
+    "filename": "whatsapp-image-2026-08-04-at-23-43-47",
+    "original": "/photos/originals/page9-galaxy/WhatsApp Image 2026-08-04 at 23.43.47.jpeg",
+    "optimized": "/photos/optimized/page9-galaxy/whatsapp-image-2026-08-04-at-23-43-47.webp",
+    "thumbnail": "/photos/thumbnails/page9-galaxy/whatsapp-image-2026-08-04-at-23-43-47.webp",
+    "caption": "Floating in our memories ✨",
+    "page": "page9-galaxy"
+  },
+  {
+    "id": 40,
+    "filename": "whatsapp-image-2026-08-04-at-23-43-50",
+    "original": "/photos/originals/page9-galaxy/WhatsApp Image 2026-08-04 at 23.43.50.jpeg",
+    "optimized": "/photos/optimized/page9-galaxy/whatsapp-image-2026-08-04-at-23-43-50.webp",
+    "thumbnail": "/photos/thumbnails/page9-galaxy/whatsapp-image-2026-08-04-at-23-43-50.webp",
+    "caption": "Another adventure together!",
+    "page": "page9-galaxy"
+  }
+]

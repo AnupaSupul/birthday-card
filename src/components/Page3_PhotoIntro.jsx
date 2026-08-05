@@ -1,9 +1,8 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import photosData from '../data/photos.json';
+import introPhotos from '../data/photos-page3-photo-intro.json';
 
 export default function Page3_PhotoIntro() {
-  const introPhotos = photosData.slice(0, 4);
   const sectionRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -56,7 +55,7 @@ export default function Page3_PhotoIntro() {
               <div className="cute-tape"></div>
               <div className="overflow-hidden bg-gray-100 aspect-square">
                 <img 
-                  src={photo.url} 
+                  src={photo.optimized} 
                   alt="Memory" 
                   className="w-full h-full object-cover pointer-events-none"
                   loading="lazy"
