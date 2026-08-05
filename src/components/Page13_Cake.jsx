@@ -221,25 +221,29 @@ export default function Page13_Cake() {
           ))}
         </div>
 
-        {/* Simple CSS Cake */}
-        <div className="relative">
+        {/* Premium CSS Cake */}
+        <div className="relative mt-8">
           {/* Candles */}
-          <div className="flex justify-center gap-4 mb-[-10px] z-10 relative">
+          <div className="flex justify-center gap-6 mb-[-15px] z-30 relative">
             {[...Array(3)].map((_, i) => (
-              <div key={i} className="relative w-4 h-16 bg-gradient-to-b from-yellow-100 to-yellow-300 rounded-sm shadow-sm">
+              <div key={i} className="relative w-5 h-20 bg-gradient-to-r from-pink-100 via-white to-pink-200 rounded-full shadow-sm border border-pink-100">
+                {/* Diagonal stripes on candle */}
+                <div className="absolute inset-0 overflow-hidden rounded-full opacity-40">
+                  <div className="w-full h-[200%] bg-[repeating-linear-gradient(45deg,transparent,transparent_5px,#f472b6_5px,#f472b6_10px)] -translate-y-4"></div>
+                </div>
                 {/* Flame */}
                 {!blownOut && (
                   <motion.div 
                     initial={{ scale: 0.8 }}
                     animate={{ 
                       scale: [1, 1.2, 0.9, 1.1, 1],
-                      rotate: [0, -5, 5, -2, 2, 0]
+                      rotate: [0, -3, 3, -1, 1, 0]
                     }}
                     transition={{ repeat: Infinity, duration: 1.5, delay: i * 0.2 }}
-                    className="absolute -top-6 left-1/2 -translate-x-1/2 w-4 h-6 bg-orange-400 rounded-full blur-[1px] shadow-[0_0_15px_#f97316]"
+                    className="absolute -top-8 left-1/2 -translate-x-1/2 w-5 h-8 bg-gradient-to-b from-yellow-200 to-orange-500 rounded-full blur-[1px] shadow-[0_0_20px_#f97316]"
                     style={{ borderTopLeftRadius: '50%', borderTopRightRadius: '50%', borderBottomLeftRadius: '30%', borderBottomRightRadius: '30%' }}
                   >
-                    <div className="absolute top-1 left-1/2 -translate-x-1/2 w-2 h-3 bg-yellow-200 rounded-full shadow-[0_0_8px_#fde047]" />
+                    <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-2 h-4 bg-white rounded-full opacity-80" />
                   </motion.div>
                 )}
                 {/* Smoke */}
@@ -256,22 +260,87 @@ export default function Page13_Cake() {
           </div>
 
           {/* Top Tier */}
-          <div className="w-48 h-20 bg-gradient-to-b from-pink-100 to-pink-300 rounded-t-xl border-b-4 border-pink-400 relative z-20 mx-auto shadow-inner">
-            {/* Frosting drips */}
-            <div className="absolute -bottom-2 left-4 w-6 h-6 bg-pink-100 rounded-full"></div>
-            <div className="absolute -bottom-3 left-16 w-8 h-8 bg-pink-100 rounded-full"></div>
-            <div className="absolute -bottom-2 right-12 w-6 h-6 bg-pink-100 rounded-full"></div>
+          <div className="w-52 h-24 bg-gradient-to-r from-pink-300 via-pink-100 to-pink-300 rounded-t-2xl relative z-20 mx-auto shadow-[-5px_0_15px_rgba(0,0,0,0.05)_inset,5px_0_15px_rgba(255,255,255,0.5)_inset]">
+            {/* Frosting base */}
+            <div className="absolute top-0 left-0 right-0 h-6 bg-white rounded-t-2xl z-10 shadow-sm"></div>
+            {/* Drips */}
+            <div className="absolute top-4 left-0 w-full flex justify-between px-1.5 z-10">
+                <div className="w-5 h-10 bg-white rounded-b-full shadow-sm"></div>
+                <div className="w-6 h-14 bg-white rounded-b-full shadow-sm mt-1"></div>
+                <div className="w-5 h-7 bg-white rounded-b-full shadow-sm mt-2"></div>
+                <div className="w-7 h-16 bg-white rounded-b-full shadow-sm"></div>
+                <div className="w-5 h-9 bg-white rounded-b-full shadow-sm mt-1"></div>
+                <div className="w-6 h-12 bg-white rounded-b-full shadow-sm"></div>
+                <div className="w-5 h-8 bg-white rounded-b-full shadow-sm mt-2"></div>
+            </div>
+            {/* Pearls at bottom */}
+            <div className="absolute -bottom-2 left-0 right-0 flex justify-center gap-1 z-30">
+               {[...Array(12)].map((_, i) => (
+                 <div key={i} className="w-4 h-4 bg-white rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.1)] border border-pink-50 text-[10px] flex items-center justify-center text-pink-200">
+                    <div className="w-1.5 h-1.5 bg-white rounded-full shadow-sm"></div>
+                 </div>
+               ))}
+            </div>
           </div>
           
           {/* Middle Tier */}
-          <div className="w-64 h-24 bg-gradient-to-b from-white to-[#f8ede3] border-b-4 border-orange-100 relative z-10 mx-auto shadow-inner"></div>
+          <div className="w-72 h-32 bg-gradient-to-r from-white via-pink-50 to-pink-100 relative z-10 mx-auto shadow-[-5px_0_15px_rgba(0,0,0,0.05)_inset,5px_0_15px_rgba(255,255,255,0.5)_inset]">
+            {/* Frosting pattern */}
+            <div className="absolute top-4 w-full flex justify-around px-4 opacity-50">
+               {[...Array(6)].map((_, i) => (
+                 <div key={i} className="w-8 h-8 rounded-full border-b-4 border-pink-300"></div>
+               ))}
+            </div>
+            {/* Gold accents */}
+            <div className="absolute top-1/2 left-0 right-0 flex justify-center gap-10 opacity-90 -translate-y-1/2">
+               {[...Array(4)].map((_, i) => (
+                 <div key={i} className="text-yellow-400 text-lg drop-shadow-sm">✨</div>
+               ))}
+            </div>
+            {/* Bottom piped border */}
+            <div className="absolute -bottom-2.5 left-0 right-0 flex justify-center gap-0.5 z-30">
+               {[...Array(16)].map((_, i) => (
+                 <div key={i} className="w-5 h-5 bg-pink-200 rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.1)] border border-pink-300"></div>
+               ))}
+            </div>
+          </div>
           
           {/* Bottom Tier */}
-          <div className="w-80 h-28 bg-gradient-to-b from-pink-300 to-pink-400 rounded-b-xl border-b-4 border-pink-500 relative z-0 mx-auto shadow-inner flex items-center justify-center">
+          <div className="w-[22rem] h-40 bg-gradient-to-r from-pink-400 via-pink-200 to-pink-400 rounded-b-xl relative z-0 mx-auto shadow-[-5px_0_20px_rgba(0,0,0,0.1)_inset,5px_0_20px_rgba(255,255,255,0.4)_inset]">
+            {/* Sprinkles on the tier */}
+            <div className="absolute inset-0 overflow-hidden rounded-b-xl opacity-80">
+                <div className="absolute top-6 left-12 w-4 h-1.5 bg-white rounded-full rotate-45 shadow-sm"></div>
+                <div className="absolute top-16 left-24 w-4 h-1.5 bg-yellow-200 rounded-full -rotate-12 shadow-sm"></div>
+                <div className="absolute top-10 right-16 w-4 h-1.5 bg-purple-200 rounded-full rotate-90 shadow-sm"></div>
+                <div className="absolute bottom-16 right-24 w-4 h-1.5 bg-white rounded-full rotate-12 shadow-sm"></div>
+                <div className="absolute bottom-10 left-32 w-4 h-1.5 bg-yellow-200 rounded-full -rotate-45 shadow-sm"></div>
+                <div className="absolute top-20 right-32 w-4 h-1.5 bg-pink-100 rounded-full rotate-[60deg] shadow-sm"></div>
+            </div>
+
+            {/* Flowers in the center */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex justify-center gap-12 text-2xl opacity-90 drop-shadow-md">
+                🌸 🌸 🌸 🌸
+            </div>
+
+            {/* Bottom piped border */}
+            <div className="absolute -bottom-3 left-0 right-0 flex justify-center gap-0 z-30">
+               {[...Array(20)].map((_, i) => (
+                 <div key={i} className="w-6 h-6 bg-white rounded-full shadow-[0_2px_5px_rgba(0,0,0,0.15)] border border-gray-100 flex items-center justify-center">
+                   <div className="w-2 h-2 bg-pink-100 rounded-full"></div>
+                 </div>
+               ))}
+            </div>
+            
             {/* Plate shadow underneath */}
-            <div className="absolute -bottom-6 w-96 h-10 bg-gradient-to-r from-transparent via-gray-300/50 to-transparent rounded-[50%] -z-10 shadow-[0_20px_40px_rgba(0,0,0,0.1)] blur-sm"></div>
-            {/* Plate */}
-            <div className="absolute -bottom-4 w-[22rem] h-8 bg-gradient-to-r from-gray-100 via-white to-gray-100 rounded-[50%] -z-10 shadow-lg border border-gray-200"></div>
+            <div className="absolute -bottom-8 w-[32rem] left-1/2 -translate-x-1/2 h-14 bg-gradient-to-r from-transparent via-gray-400/40 to-transparent rounded-[50%] -z-10 blur-md"></div>
+            
+            {/* Premium Plate */}
+            <div className="absolute -bottom-6 w-[28rem] left-1/2 -translate-x-1/2 h-12 bg-gradient-to-b from-white to-gray-200 rounded-[50%] -z-10 shadow-xl border border-gray-300">
+                {/* Plate inner rim */}
+                <div className="absolute top-1.5 left-3 right-3 bottom-1.5 rounded-[50%] border border-gray-300 opacity-60"></div>
+                {/* Inner shadow */}
+                <div className="absolute inset-0 rounded-[50%] shadow-[inset_0_-2px_10px_rgba(0,0,0,0.05)]"></div>
+            </div>
           </div>
         </div>
 
