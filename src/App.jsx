@@ -211,7 +211,7 @@ function App() {
             <ErrorBoundary name="Awards"><Page8_Awards /></ErrorBoundary>
             <ErrorBoundary name="Galaxy"><Page9_Galaxy /></ErrorBoundary>
             <ErrorBoundary name="Scrapbook"><Page10_Scrapbook /></ErrorBoundary>
-            <ErrorBoundary name="CatchStars"><Page11_CatchStars /></ErrorBoundary>
+            {/* <ErrorBoundary name="CatchStars"><Page11_CatchStars /></ErrorBoundary> */}
             <ErrorBoundary name="LuckyWheel"><Page12_LuckyWheel /></ErrorBoundary>
             <ErrorBoundary name="Cake"><Page13_Cake /></ErrorBoundary>
             <ErrorBoundary name="PhotoWall"><Page14_PhotoWall /></ErrorBoundary>

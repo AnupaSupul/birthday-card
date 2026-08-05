@@ -25,3 +25,9 @@ dist-ssr
 
 # CodeLens Graph local index
 .codelens/
+
+# Generated image outputs (regenerate with: npm run optimize-images)
+public/photos/optimized/
+public/photos/thumbnails/
+src/data/photos-*.json
+src/data/photos-galaxy-all.json

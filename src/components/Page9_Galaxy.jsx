@@ -2,47 +2,54 @@ import React, { useRef, useState, useMemo, useEffect, useCallback } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Stars } from '@react-three/drei';
 import * as THREE from 'three';
-import photosData from '../data/photos.json';
+import allPhotosData from '../data/photos-galaxy-all.json';
 import { motion, AnimatePresence } from 'framer-motion';
 import ErrorBoundary from './ErrorBoundary';
 
-// Generate galaxy photo positions (computed once at module level)
-const GALAXY_COUNT = 50;
-const galaxyPhotos = Array.from({ length: GALAXY_COUNT }).map((_, i) => {
-  const photo = photosData[i % photosData.length];
-  const radius = Math.random() * 10 + 5;
-  const theta = Math.random() * 2 * Math.PI;
-  const phi = Math.acos((Math.random() * 2) - 1);
+// Shared texture loader (reused across all PhotoNodes — avoids creating new instances)
+const sharedTextureLoader = new THREE.TextureLoader();
 
-  const x = radius * Math.sin(phi) * Math.cos(theta);
-  const y = radius * Math.sin(phi) * Math.sin(theta);
-  const z = radius * Math.cos(phi);
+// Generate galaxy photo positions dynamically from the manifest
+// GALAXY_COUNT grows automatically as you add more photos
+function generateGalaxyPositions(photos) {
+  return photos.map((photo, i) => {
+    const radius = Math.random() * 10 + 5;
+    const theta = Math.random() * 2 * Math.PI;
+    const phi = Math.acos((Math.random() * 2) - 1);
 
-  return { ...photo, uniqueId: i, position: [x, y, z] };
-});
+    const x = radius * Math.sin(phi) * Math.cos(theta);
+    const y = radius * Math.sin(phi) * Math.sin(theta);
+    const z = radius * Math.cos(phi);
 
-// Photo node — uses THREE.TextureLoader directly instead of drei's useTexture.
-// useTexture uses Suspense (throws a Promise), which causes "Rendered more hooks
-// than during the previous render" because hooks before the throw run but hooks
-// after it don't. By loading textures in useEffect, the hook count is constant.
-function PhotoNode({ position, url, caption, onClick }) {
+    return { ...photo, uniqueId: i, position: [x, y, z] };
+  });
+}
+
+// Photo node — loads thumbnail texture for 3D scene (300px is plenty for small planes)
+// Hook count is always constant: useRef, useState, useState, useMemo, useEffect, useFrame = 6
+function PhotoNode({ position, thumbnailUrl, optimizedUrl, caption, onClick }) {
   const ref = useRef();
   const [hovered, setHovered] = useState(false);
   const [texture, setTexture] = useState(null);
   const randomSpeed = useMemo(() => (Math.random() * 0.002) + 0.001, []);
 
-  // Load texture via THREE.TextureLoader — no Suspense, no hook count mismatch
+  // Load THUMBNAIL texture (small, fast, good enough for 3D planes)
   useEffect(() => {
     let cancelled = false;
-    const loader = new THREE.TextureLoader();
-    loader.load(
-      url,
+    sharedTextureLoader.load(
+      thumbnailUrl,
       (tex) => { if (!cancelled) setTexture(tex); },
       undefined,
-      (err) => { console.warn(`[Galaxy] Failed to load texture: ${url}`); }
+      () => { /* silently skip failed textures */ }
     );
-    return () => { cancelled = true; };
-  }, [url]);
+    return () => {
+      cancelled = true;
+      // Dispose texture when this node unmounts (memory cleanup)
+      if (texture) {
+        texture.dispose();
+      }
+    };
+  }, [thumbnailUrl]);
 
   useFrame(() => {
     if (ref.current) {
@@ -55,7 +62,7 @@ function PhotoNode({ position, url, caption, onClick }) {
   return (
     <group ref={ref} position={position}>
       <mesh 
-        onClick={(e) => { e.stopPropagation(); onClick(url, caption); }}
+        onClick={(e) => { e.stopPropagation(); onClick(optimizedUrl, caption); }}
         onPointerOver={() => setHovered(true)}
         onPointerOut={() => setHovered(false)}
       >
@@ -79,19 +86,20 @@ function PhotoNode({ position, url, caption, onClick }) {
 }
 
 // The actual 3D scene
-function GalaxyScene({ onPhotoClick }) {
+function GalaxyScene({ galaxyPhotos, onPhotoClick }) {
   return (
     <>
       <ambientLight intensity={1.2} color="#ffe4e1" />
       <directionalLight position={[5, 5, 5]} intensity={0.5} color="#fff" />
-      <Stars radius={100} depth={50} count={3000} factor={4} saturation={1} fade speed={1} color="#ffb6c1" />
+      <Stars radius={100} depth={50} count={2000} factor={4} saturation={1} fade speed={1} color="#ffb6c1" />
 
       <group>
         {galaxyPhotos.map((photo) => (
           <PhotoNode
             key={photo.uniqueId}
             position={photo.position}
-            url={photo.url}
+            thumbnailUrl={photo.thumbnail}
+            optimizedUrl={photo.optimized}
             caption={photo.caption}
             onClick={(url, caption) => onPhotoClick({ url, caption })}
           />
@@ -111,8 +119,6 @@ function GalaxyScene({ onPhotoClick }) {
   );
 }
 
-
-
 // Canvas fallback if the whole 3D scene fails
 function CanvasFallback() {
   return (
@@ -129,7 +135,19 @@ function CanvasFallback() {
 export default function Page9_Galaxy() {
   const [selected, setSelected] = useState(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showCanvas, setShowCanvas] = useState(false);
   const sectionRef = useRef(null);
+
+  // Generate positions once from the full manifest (memoized)
+  const galaxyPhotos = useMemo(() => generateGalaxyPositions(allPhotosData), []);
+
+  // Lazy-load: only mount the Canvas when entering fullscreen for the first time
+  // This prevents Three.js from initializing until the user wants it
+  useEffect(() => {
+    if (isFullscreen && !showCanvas) {
+      setShowCanvas(true);
+    }
+  }, [isFullscreen, showCanvas]);
 
   // OPTION A: When fullscreen, disable page scrolling entirely
   useEffect(() => {
@@ -143,7 +161,6 @@ export default function Page9_Galaxy() {
     };
   }, [isFullscreen]);
 
-  // Scroll into view when entering fullscreen mode
   const handleEnterGallery = useCallback(() => {
     setIsFullscreen(true);
     sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -160,32 +177,36 @@ export default function Page9_Galaxy() {
       id="galaxy"
     >
 
-      {/* 3D Canvas wrapped in ErrorBoundary */}
+      {/* 3D Canvas — only mounted after first Enter Gallery click */}
       <div className={`absolute inset-0 transition-all duration-1000 ${selected ? 'blur-md scale-110' : ''}`}>
-        <ErrorBoundary name="GalaxyCanvas" fallback={<CanvasFallback />}>
-          <Canvas
-            camera={{ position: [0, 5, 20], fov: 60 }}
-            onCreated={({ gl }) => {
-              const canvas = gl.domElement;
-              canvas.addEventListener('webglcontextlost', (e) => {
-                e.preventDefault();
-                console.warn('[Galaxy] WebGL context lost');
-              });
-              canvas.addEventListener('webglcontextrestored', () => {
-                console.log('[Galaxy] WebGL context restored');
-              });
-            }}
-          >
-            <GalaxyScene onPhotoClick={setSelected} />
-          </Canvas>
-        </ErrorBoundary>
+        {showCanvas ? (
+          <ErrorBoundary name="GalaxyCanvas" fallback={<CanvasFallback />}>
+            <Canvas
+              camera={{ position: [0, 5, 20], fov: 60 }}
+              onCreated={({ gl }) => {
+                const canvas = gl.domElement;
+                canvas.addEventListener('webglcontextlost', (e) => {
+                  e.preventDefault();
+                  console.warn('[Galaxy] WebGL context lost');
+                });
+              }}
+            >
+              <GalaxyScene galaxyPhotos={galaxyPhotos} onPhotoClick={setSelected} />
+            </Canvas>
+          </ErrorBoundary>
+        ) : (
+          <CanvasFallback />
+        )}
       </div>
 
       {/* Overlay Instructions & Controls */}
       {!selected && (
         <div className="absolute top-10 left-0 right-0 text-center pointer-events-none z-10">
           <h2 className="text-3xl md:text-5xl font-pacifico text-[#ff8da1] font-bold drop-shadow-sm mb-2">Floating Memories</h2>
-          <p className="text-gray-600 font-nunito font-semibold drop-shadow-sm mb-4">
+          <p className="text-gray-600 font-nunito font-semibold drop-shadow-sm mb-1">
+            {galaxyPhotos.length} photos floating in your memory galaxy
+          </p>
+          <p className="text-gray-500 font-nunito text-sm drop-shadow-sm mb-4">
             {isFullscreen ? 'Drag to explore. Scroll to zoom. Click a photo.' : 'Click "Enter Gallery" to explore in fullscreen!'}
           </p>
           <div className="pointer-events-auto inline-block">
@@ -208,7 +229,7 @@ export default function Page9_Galaxy() {
         </div>
       )}
 
-      {/* Popup Modal */}
+      {/* Popup Modal — uses OPTIMIZED full-res image */}
       <AnimatePresence>
         {selected && (
           <motion.div
