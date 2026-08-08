@@ -36,7 +36,7 @@ export default function Page3_PhotoIntro() {
             Remember when...
           </h2>
           <p className="text-xl text-gray-500 font-nunito max-w-2xl mx-auto">
-            Every picture tells a story of our crazy adventures! 🌸
+            Every picture tells a story of  crazy adventures! 🌸
           </p>
         </motion.div>
 

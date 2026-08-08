@@ -128,9 +128,12 @@ export default function Page4_FunnyQuestion() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ type: 'spring', bounce: 0.5 }}
             >
-              <h2 className="text-4xl md:text-6xl font-pacifico font-bold text-gradient mb-6 leading-tight">
-                I knew you'd make the right decision 😂
-              </h2>
+             <h2 className="text-4xl md:text-6xl font-pacifico font-bold mb-6 leading-tight">
+                  <span className="text-gradient">
+                    I knew you'd make the right decision
+                  </span>{" "}
+                  😂
+                </h2>
               <p className="text-2xl font-nunito text-gray-600 font-bold">Can't wait for the cake! 🍓</p>
             </motion.div>
           )}

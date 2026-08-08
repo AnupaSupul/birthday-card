@@ -6,8 +6,8 @@ import { FaGift } from 'react-icons/fa';
 const surprises = [
   { type: 'text', content: "You're getting older, but not wiser! 😂" },
   { type: 'emoji', content: "Congratulations! You're now officially at the age where naps count as a hobby. 😴🎉" },
-  { type: 'quote', content: "Good friends don't let you do stupid things... alone." },
-  { type: 'text', content: "Here is my gift: My amazing presence. You're welcome. 😎" },
+  { type: 'quote', content: "Growing older is mandatory. Growing wiser is apparently optional. 😌" },
+ { type: 'quote', content: "Another year older, yet the evidence of maturity remains suspiciously absent. 😂" },
   { type: 'emoji', content: "Breaking News 📰: Local pizza stores are preparing for unusually high demand because it's your birthday. 🍕😂" },
 ];
 

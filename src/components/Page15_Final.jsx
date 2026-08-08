@@ -111,13 +111,12 @@ export default function Page15_Final() {
           className="glass-card p-8 md:p-12 mb-12 bg-white/60 shadow-lg"
         >
           <p className="text-xl md:text-2xl font-nunito leading-relaxed text-gray-700 font-bold mb-6">
-            Happy Birthday! 🎉
+            Happy Birthday Bunii! 🎉
           </p>
           <p className="text-lg md:text-xl font-nunito leading-relaxed text-gray-600 font-semibold mb-6">
-            Thank you for being such an amazing friend. I hope this year brings you lots of happiness, unforgettable memories, success, laughter, good health, and countless reasons to smile.
-          </p>
+Here’s to another year of becoming even more of the person you’re meant to be. May your days be filled with laughter, little adventures, unexpected happiness, and moments that make you smile. Keep being wonderfully you, chase what makes you happy, and never forget the light you bring wherever you go. 🌸💖          </p>
           <p className="text-lg md:text-xl font-nunito leading-relaxed font-bold text-pink-500">
-            Stay exactly the wonderful person you are.<br/>Have the most amazing birthday ever! 🎂✨
+            Stay exactly the wonderful person you are.<br/>Have the happiest birthday and an absolutely beautiful year ahead!🎀🎂
           </p>
         </motion.div>
 

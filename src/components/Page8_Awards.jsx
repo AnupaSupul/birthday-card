@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const awards = [
   { title: "Best Laugh", icon: "😂", desc: "For always laughing at the worst times." },
-  { title: "Professional Food Stealer", icon: "🍕", desc: "No fry is safe when you're around." },
+  { title: "Certified Foodie", icon: "🍕", desc: "Responsible for all important food decisions. 😂" },
   { title: "Professional Troublemaker", icon: "🌪️", desc: "A walking natural disaster." },
   { title: "Certified Drama Queen", icon: "🎭", desc: "Oscar-worthy performances daily." },
   { title: "Selfie Queen", icon: "📸", desc: "Takes 100 photos, posts 1." },
@@ -29,7 +29,7 @@ export default function Page8_Awards() {
       <div className="text-center mb-16 z-10 relative">
         <div className="absolute -top-10 left-10 text-4xl animate-float opacity-70">🌸</div>
         <h2 className="text-4xl md:text-6xl font-pacifico font-bold text-[#ff8da1] drop-shadow-sm mb-4">
-          Best Friend Awards 🏆
+           The Best Unofficial Awards 🏆
         </h2>
         <p className="text-xl text-gray-500 font-nunito font-semibold">And the nominees are...</p>
       </div>

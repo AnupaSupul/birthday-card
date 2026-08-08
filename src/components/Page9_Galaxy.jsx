@@ -147,7 +147,7 @@ function GalaxyScene({ galaxyPhotos, onPhotoClick, active }) {
         enablePan={active}
         enableZoom={active}
         enableRotate={active}
-        autoRotate={active}
+        autoRotate={true}
         autoRotateSpeed={0.5}
         maxDistance={30}
         minDistance={5}
@@ -240,9 +240,7 @@ export default function Page9_Galaxy() {
       {!selected && (
         <div className="absolute top-10 left-0 right-0 text-center pointer-events-none z-10">
           <h2 className="text-3xl md:text-5xl font-pacifico text-[#ff8da1] font-bold drop-shadow-sm mb-2">Floating Memories</h2>
-          <p className="text-gray-600 font-nunito font-semibold drop-shadow-sm mb-1">
-            {galaxyPhotos.length} photos floating in your memory galaxy
-          </p>
+          
           <p className="text-gray-500 font-nunito text-sm drop-shadow-sm mb-4">
             {isFullscreen ? 'Drag to explore. Scroll to zoom. Click a photo.' : 'Click "Enter Gallery" to explore in fullscreen!'}
           </p>

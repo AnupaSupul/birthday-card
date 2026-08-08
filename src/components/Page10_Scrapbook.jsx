@@ -4,10 +4,10 @@ import scrapbookPhotos from '../data/photos-page10-scrapbook.json';
 
 const stickers = ["🌸", "⭐", "💖", "✨", "🎀", "🦋"];
 const notes = [
-  "Remember this day? 🥹",
-  "We look so chaotic here lol",
-  "Best day ever! ☀️",
-  "Take me back! ✈️"
+  "Office Mode Buniie ",
+  "Buni Fathima",
+  "Lil Buniii",
+  "Ah, clasic teaching mode bunie "
 ];
 
 // Generate scrapbook pages grouping 2 photos per page

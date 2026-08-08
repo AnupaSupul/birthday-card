@@ -183,7 +183,7 @@ export default function Page13_Cake() {
           >
             <div className="glass-card inline-block px-8 py-6 bg-white/60 backdrop-blur-md shadow-[0_8px_32px_rgba(255,182,193,0.3)] border border-white/60 rounded-3xl">
               <p className="text-2xl md:text-4xl font-pacifico text-pink-500 drop-shadow-sm leading-relaxed">
-                May every wish you make<br />this year come true. 💖
+               May your year be filled with happy surprises, unforgettable moments,<br />and way more good days than bad ones 💖
               </p>
             </div>
           </motion.div>

@@ -65,7 +65,7 @@ export default function Page2_Welcome() {
           transition={{ duration: 1, delay: 1.5 }}
           className="text-lg md:text-2xl font-nunito text-gray-500 italic mb-12"
         >
-          "Some friends become family without anyone noticing."
+          "Some people just have a talent for turning normal days into good memories"
         </motion.p>
 
         <motion.button
