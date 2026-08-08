@@ -63,7 +63,7 @@ function generateGalaxyPositions(photos) {
 
 // Photo node — loads thumbnail texture for 3D scene (300px is plenty for small planes)
 // Hook count is always constant: useRef, useState, useState, useMemo, useEffect, useFrame = 6
-function PhotoNode({ position, thumbnailUrl, optimizedUrl, caption, onClick }) {
+function PhotoNode({ position, thumbnailUrl, optimizedUrl, caption, onClick, active }) {
   const ref = useRef();
   const [hovered, setHovered] = useState(false);
   const [texture, setTexture] = useState(null);
@@ -88,7 +88,7 @@ function PhotoNode({ position, thumbnailUrl, optimizedUrl, caption, onClick }) {
   }, [thumbnailUrl]);
 
   useFrame(() => {
-    if (ref.current) {
+    if (ref.current && active) {
       ref.current.position.applyAxisAngle(new THREE.Vector3(0, 1, 0), randomSpeed);
     }
   });
@@ -122,7 +122,7 @@ function PhotoNode({ position, thumbnailUrl, optimizedUrl, caption, onClick }) {
 }
 
 // The actual 3D scene
-function GalaxyScene({ galaxyPhotos, onPhotoClick }) {
+function GalaxyScene({ galaxyPhotos, onPhotoClick, active }) {
   return (
     <>
       <ambientLight intensity={1.2} color="#ffe4e1" />
@@ -138,15 +138,16 @@ function GalaxyScene({ galaxyPhotos, onPhotoClick }) {
             optimizedUrl={photo.optimized}
             caption={photo.caption}
             onClick={(url, caption) => onPhotoClick({ url, caption })}
+            active={active}
           />
         ))}
       </group>
 
       <OrbitControls
-        enablePan={true}
-        enableZoom={true}
-        enableRotate={true}
-        autoRotate={true}
+        enablePan={active}
+        enableZoom={active}
+        enableRotate={active}
+        autoRotate={active}
         autoRotateSpeed={0.5}
         maxDistance={30}
         minDistance={5}
@@ -214,7 +215,7 @@ export default function Page9_Galaxy() {
     >
 
       {/* 3D Canvas — only mounted after first Enter Gallery click */}
-      <div className={`absolute inset-0 transition-all duration-1000 ${selected ? 'blur-md scale-110' : ''}`}>
+      <div className={`absolute inset-0 transition-all duration-1000 ${selected ? 'blur-md scale-110' : ''} ${!isFullscreen ? 'pointer-events-none' : ''}`}>
         {showCanvas ? (
           <ErrorBoundary name="GalaxyCanvas" fallback={<CanvasFallback />}>
             <Canvas
@@ -227,7 +228,7 @@ export default function Page9_Galaxy() {
                 });
               }}
             >
-              <GalaxyScene galaxyPhotos={galaxyPhotos} onPhotoClick={setSelected} />
+              <GalaxyScene galaxyPhotos={galaxyPhotos} onPhotoClick={setSelected} active={isFullscreen} />
             </Canvas>
           </ErrorBoundary>
         ) : (
