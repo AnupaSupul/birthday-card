@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 const awards = [
   { title: "Best Laugh", icon: "😂", desc: "For always laughing at the worst times." },
   { title: "Certified Foodie", icon: "🍕", desc: "Responsible for all important food decisions. 😂" },
-  { title: "Professional Troublemaker", icon: "🌪️", desc: "A walking natural disaster." },
-  { title: "Certified Drama Queen", icon: "🎭", desc: "Oscar-worthy performances daily." },
+  { title: "Professional Troublemaker", icon: "🌪️", desc: "A walking natural disaster😂." },
+  { title: "Certified Drama Queen", icon: "🎭", desc: "Because life is never boring around you. 😂" },
   { title: "Selfie Queen", icon: "📸", desc: "Takes 100 photos, posts 1." },
   { title: "Birthday Queen", icon: "👑", desc: "The ruler of today." }
 ];

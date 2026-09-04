@@ -116,7 +116,7 @@ export default function Page15_Final() {
           <p className="text-lg md:text-xl font-nunito leading-relaxed text-gray-600 font-semibold mb-6">
 Here’s to another year of becoming even more of the person you’re meant to be. May your days be filled with laughter, little adventures, unexpected happiness, and moments that make you smile. Keep being wonderfully you, chase what makes you happy, and never forget the light you bring wherever you go. 🌸💖          </p>
           <p className="text-lg md:text-xl font-nunito leading-relaxed font-bold text-pink-500">
-            Stay exactly the wonderful person you are.<br/>Have the happiest birthday and an absolutely beautiful year ahead!🎀🎂
+            You’re like fine wine, Buni.<br/>aging isn’t making you older, it’s just making you better and better.!🎀🍷
           </p>
         </motion.div>
 
